@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashton Gibson - GIS Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Topographic Background -->
+    <canvas id="topographic-background"></canvas>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="assets/resume/Gibson-Ashton-Resume.pdf" target="_blank" class="nav-link">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Unified Introduction Section (Hero + About + Skills + Contact Combined) -->
+    <section id="hero" class="unified-hero">
+        <div class="unified-hero-content">
+
+            <!-- Header: Name & Identity with Compact Skills/Connect -->
+            <div class="hero-header">
+                <h1 class="hero-name">Ashton Gibson</h1>
+                <p class="hero-tagline">GIS Specialist | Environmental Conservation | Cartographic Design</p>
+                <p class="hero-location">📍 University of Michigan · Program in the Environment</p>
+
+                <!-- Compact Skills Row -->
+                <div class="hero-skills-compact">
+                    <span class="compact-label">Technical Expertise:</span>
+                    <div class="skills-compact-list">
+                        <div class="skill-chip">
+                            <span class="skill-chip-icon">📊</span>
+                            <span class="skill-chip-text">Data Management</span>
+                        </div>
+                        <div class="skill-chip">
+                            <span class="skill-chip-icon">🗺️</span>
+                            <span class="skill-chip-text">Spatial Analysis</span>
+                        </div>
+                        <div class="skill-chip">
+                            <span class="skill-chip-icon">💧</span>
+                            <span class="skill-chip-text">Hydrologic Modeling</span>
+                        </div>
+                        <div class="skill-chip">
+                            <span class="skill-chip-icon">🌐</span>
+                            <span class="skill-chip-text">Interactive Maps</span>
+                        </div>
+                        <div class="skill-chip">
+                            <span class="skill-chip-icon">🎨</span>
+                            <span class="skill-chip-text">Cartography</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compact Connect Buttons -->
+                <div class="hero-connect-compact">
+                    <span class="compact-label">Let's Connect:</span>
+                    <div class="connect-compact-list">
+                        <a href="https://www.linkedin.com/in/ashton-gibson-20b956272/" target="_blank" class="connect-btn">
+                            <span class="connect-btn-icon">💼</span>
+                            <span class="connect-btn-text">LinkedIn</span>
+                        </a>
+                        <a href="assets/resume/Gibson-Ashton-Resume.pdf" target="_blank" class="connect-btn">
+                            <span class="connect-btn-icon">📄</span>
+                            <span class="connect-btn-text">Resume</span>
+                        </a>
+                        <a href="#projects" class="connect-btn connect-btn-primary">
+                            <span class="connect-btn-icon">→</span>
+                            <span class="connect-btn-text">View Projects</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio & Photo Section -->
+            <div class="hero-bio-section">
+                <div class="hero-profile-photo">
+                    <img src="assets/images/about-me.jpeg" alt="Ashton Gibson">
+                </div>
+                <div class="hero-bio-text">
+                    <p class="bio-lead">Passionate about leveraging Geographic Information Systems for environmental conservation and scientific communication through mapping.</p>
+                    <p class="bio-secondary">Through coursework and hands-on project experience at the University of Michigan, I've developed expertise in spatial analysis, hydrologic modeling, and creating compelling cartographic designs that communicate complex spatial data to diverse audiences.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section Header -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="projects-unified-panel">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">A showcase of coursework, analysis projects, and personal cartographic explorations</p>
+
+                <!-- Project Filters -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="coursework">Coursework</button>
+                    <button class="filter-btn" data-filter="analysis">Analysis</button>
+                    <button class="filter-btn" data-filter="personal">Personal</button>
+                </div>
+
+                <!-- Projects Grid (populated dynamically from projects.json) -->
+                <div class="projects-grid" id="projectsGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ashton Gibson. All rights reserved.</p>
+            <p class="footer-subtitle">GIS Portfolio · University of Michigan</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-overlay" id="projectModalOverlay"></div>
+        <div class="project-modal-content">
+            <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">&times;</button>
+            <div class="project-modal-body">
+                <div class="project-modal-image-section">
+                    <img src="" alt="" id="projectModalImage" data-lightbox="true">
+                </div>
+                <div class="project-modal-info-section">
+                    <span class="project-modal-category" id="projectModalCategory"></span>
+                    <h2 class="project-modal-title" id="projectModalTitle"></h2>
+                    <p class="project-modal-lead" id="projectModalLead"></p>
+                    <p class="project-modal-description" id="projectModalDescription"></p>
+                    <div class="project-modal-actions" id="projectModalActions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

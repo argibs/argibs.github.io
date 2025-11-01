@@ -1,0 +1,111 @@
+[
+  {
+    "id": "1",
+    "category": "coursework",
+    "title": "Vector Spatial Overlay Analysis",
+    "description": "Real-world GIS application displaying multiple types of spatial information in a digestible format for general audiences.",
+    "image": "assets/images/Overlay-Layout.jpg",
+    "lead": "Real-world GIS application displaying multiple types of spatial information in a digestible format for general audiences.",
+    "fullDescription": "Completed as part of Environ 531: GIS Principles. This project emphasizes the practical application of vector-based spatial analysis techniques to create clear, informative visualizations."
+  },
+  {
+    "id": "2",
+    "category": "coursework",
+    "title": "Suitability Analysis with Data Enrichment",
+    "description": "Used stacked data queries and spatial overlay tools to identify regions of interest with Esri data enrichment.",
+    "image": "assets/images/TRI-layout.jpg",
+    "lead": "Used stacked data queries and spatial overlay tools to identify regions of interest with Esri data enrichment.",
+    "fullDescription": "Completed for Earth 309: GIS Explorations. This analysis incorporates Esri data enrichment capabilities for calculating detailed spatial statistics and demographic information."
+  },
+  {
+    "id": "3",
+    "category": "analysis",
+    "title": "San Andreas Fault Earthquake Risk Assessment",
+    "description": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
+    "image": "assets/images/Liquefaction-Risk-Layout.jpg",
+    "lead": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
+    "fullDescription": "This analysis combines geologic and demographic factors using raster calculations and spatial overlay tools to identify high-risk areas and vulnerable populations."
+  },
+  {
+    "id": "4",
+    "category": "coursework",
+    "title": "Fermi National Accelerator Laboratory Site Analysis",
+    "description": "Spatial analysis and cartographic visualization of the Fermi Lab facility and surrounding area.",
+    "image": "assets/images/FermiLayout.jpg",
+    "lead": "Spatial analysis and cartographic visualization of the Fermi Lab facility and surrounding area.",
+    "fullDescription": "Detailed site analysis incorporating infrastructure, environmental features, and spatial relationships using professional cartographic design principles."
+  },
+  {
+    "id": "5",
+    "category": "coursework",
+    "title": "Automated Raster Suitability Analysis",
+    "description": "Employed ArcGIS Model Builder and Python scripting to analyze multiple raster datasets.",
+    "image": "assets/images/suitability_analysis.jpg",
+    "lead": "Employed ArcGIS Model Builder and Python scripting to analyze multiple raster datasets.",
+    "fullDescription": "Completed for Earth 408. This project uses automated workflow modeling to perform complex raster calculations and criteria-based filtering across multiple datasets."
+  },
+  {
+    "id": "6",
+    "category": "analysis",
+    "title": "Watershed Boundary Delineation",
+    "description": "Used digital elevation models to calculate watershed boundaries, flow direction, and stream order.",
+    "image": "assets/images/watershed.jpg",
+    "lead": "Used digital elevation models to calculate watershed boundaries, flow direction, and stream order.",
+    "fullDescription": "Comprehensive hydrologic analysis using ArcGIS Hydrologic Modeling tools to understand watershed characteristics and water flow patterns."
+  },
+  {
+    "id": "7",
+    "category": "coursework",
+    "title": "3D Terrain and Cost Path Analysis",
+    "description": "Calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
+    "image": "assets/images/cost_path.jpg",
+    "lead": "Calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
+    "fullDescription": "Created 3D terrain visualizations and performed cost-distance analysis to identify least-cost paths across complex topography."
+  },
+  {
+    "id": "8",
+    "category": "analysis",
+    "title": "Harmful Algal Bloom Formation Study",
+    "description": "Final project conducting comprehensive watershed analysis to study HAB formation in local lakes.",
+    "image": "svg",
+    "lead": "Final project conducting comprehensive watershed analysis to study HAB formation in local lakes.",
+    "fullDescription": "This research project combines hydrologic modeling, water quality analysis, and spatial statistics to understand the environmental factors contributing to harmful algal bloom formation. Research presented in poster format.",
+    "pdfLink": "assets/final_proj/final.pdf"
+  },
+  {
+    "id": "9",
+    "category": "personal",
+    "title": "Lake Michigan Bathymetry Visualization",
+    "description": "Exploring bathymetry data visualization with various color palettes and cartographic styles.",
+    "image": "assets/images/lake_michigan.png",
+    "lead": "Exploring bathymetry data visualization with various color palettes and cartographic styles.",
+    "fullDescription": "Personal project using QGIS to create visually compelling representations of Lake Michigan's underwater topography through careful color selection and design."
+  },
+  {
+    "id": "10",
+    "category": "personal",
+    "title": "Lake Superior Bathymetry Visualization",
+    "description": "Cartographic exploration of Lake Superior's depth and underwater features.",
+    "image": "assets/images/lake_superior.jpg",
+    "lead": "Cartographic exploration of Lake Superior's depth and underwater features.",
+    "fullDescription": "Continuing the bathymetry series with Lake Superior, showcasing different color palettes and design approaches to represent the deepest of the Great Lakes."
+  },
+  {
+    "id": "11",
+    "category": "personal",
+    "title": "Mumbai Elevation Visualization",
+    "description": "Stylistic elevation visualization of Mumbai showcasing topographic variations.",
+    "image": "assets/images/mumbai.jpg",
+    "lead": "Stylistic elevation visualization of Mumbai showcasing topographic variations.",
+    "fullDescription": "Creative cartographic design exploring Mumbai's urban landscape through elevation data, emphasizing the relationship between topography and urban development."
+  },
+  {
+    "id": "12",
+    "category": "personal",
+    "title": "UMS Ticket Office Venues Map",
+    "description": "Custom map showcasing venue locations for the University Musical Society Ticket Office.",
+    "image": "assets/images/ums.png",
+    "lead": "Custom map showcasing venue locations for the University Musical Society Ticket Office.",
+    "fullDescription": "Practical mapping project combining functionality with aesthetic design to help patrons locate performance venues across the University of Michigan campus."
+  }
+]
