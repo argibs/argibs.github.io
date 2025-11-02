@@ -741,7 +741,7 @@ function buildFilters(container, filters) {
             allCategoryItem.className = "filter-dropdown-item";
             allCategoryItem.setAttribute("role", "menuitem");
             allCategoryItem.tabIndex = 0;
-            allCategoryItem.textContent = "All " + category.charAt(0).toUpperCase() + category.slice(1);
+            allCategoryItem.textContent = "All";
             allCategoryItem.addEventListener("click", (e) => {
                 e.stopPropagation();
                 clearActiveFilters();
@@ -754,9 +754,9 @@ function buildFilters(container, filters) {
                 });
                 allCategoryItem.classList.add('selected');
 
-                // Hide badge since showing all in category
-                badge.textContent = '';
-                badge.classList.remove('visible');
+                // Show badge with "All" text
+                badge.textContent = 'All';
+                badge.classList.add('visible');
 
                 applyFilter(category, null); // Show all in this category
                 closeAllDropdowns();
@@ -844,8 +844,16 @@ function toggleDropdown(button, dropdown) {
         // compute smart flip
         computeFlipForDropdown(dropdown);
     } else {
+        // Closing the dropdown
         dropdown.classList.remove("open", "flip");
-        button.classList.remove("active");
+
+        // Only remove active class if no filter is selected from this dropdown
+        const badge = button.querySelector(".subcategory-badge");
+        const hasSelection = badge && badge.classList.contains("visible");
+
+        if (!hasSelection) {
+            button.classList.remove("active");
+        }
         button.setAttribute("aria-expanded", "false");
     }
 }
@@ -883,7 +891,13 @@ function closeAllDropdowns() {
         dd.classList.remove("open", "flip");
         const btn = dd.parentElement.querySelector(".filter-btn-with-dropdown");
         if (btn) {
-            btn.classList.remove("active");
+            // Only remove active class if no filter is selected from this dropdown
+            const badge = btn.querySelector(".subcategory-badge");
+            const hasSelection = badge && badge.classList.contains("visible");
+
+            if (!hasSelection) {
+                btn.classList.remove("active");
+            }
             btn.setAttribute("aria-expanded", "false");
         }
     });

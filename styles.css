@@ -738,16 +738,15 @@ p {
 
 /* Subcategory badge on dropdown button */
 .subcategory-badge {
-    display: inline-block;
+    display: none;
     margin-left: 0.4rem;
     padding: 0.15rem 0.5rem;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
     font-size: 0.7rem;
     font-weight: 600;
-    opacity: 0;
     transform: scale(0.8);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .filter-btn-with-dropdown.active .subcategory-badge {
@@ -755,7 +754,7 @@ p {
 }
 
 .subcategory-badge.visible {
-    opacity: 1;
+    display: inline-block;
     transform: scale(1);
 }
 
