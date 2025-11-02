@@ -1,63 +1,63 @@
 [
   {
     "category": "coursework",
-    "subcategory": "test2",
+    "subcategory": "EAS 531",
     "title": "Vector Spatial Overlay Analysis",
     "description": "Real-world GIS application displaying multiple types of spatial information in a digestible format for general audiences.",
-    "image": "assets/images/Overlay-Layout.jpg",
-    "fullDescription": "Completed as part of Environ 531: GIS Principles. This project emphasizes the practical application of vector-based spatial analysis techniques to create clear, informative visualizations."
+    "image": "assets/images/TRI-layout.jpg",
+    "fullDescription": "Completed as part of Environ 531: GIS Principles. This course emphasized real-world applications of GIS, and the goal of this assignment was to display multiple types of spatial information in a way which is still digestible to a general audience."
   },
   {
     "category": "coursework",
-    "subcategory": "test1",
-    "title": "Suitability Analysis with Data Enrichment",
-    "description": "Used stacked data queries and spatial overlay tools to identify regions of interest with Esri data enrichment.",
-    "image": "assets/images/TRI-layout.jpg",
-    "fullDescription": "Completed for Earth 309: GIS Explorations. This analysis incorporates Esri data enrichment capabilities for calculating detailed spatial statistics and demographic information."
-  },
-  {
-    "category": "analysis",
-    "subcategory": "test2",
-    "title": "San Andreas Fault Earthquake Risk Assessment",
-    "description": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
-    "image": "assets/images/Liquefaction-Risk-Layout.jpg",
+    "subcategory": "Environ 309",
+    "title": "Earthquake Risk Assessment, part 2",
+    "description": "Final project for Environ 309: Combines geologic and demographic factors to identify at-risk areas.",
+    "image":"assets/images/Overlay-Layout.jpg",
     "fullDescription": "This analysis combines geologic and demographic factors using raster calculations and spatial overlay tools to identify high-risk areas and vulnerable populations."
   },
   {
     "category": "coursework",
-    "subcategory": "test2",
-    "title": "Fermi National Accelerator Laboratory Site Analysis",
-    "description": "Spatial analysis and cartographic visualization of the Fermi Lab facility and surrounding area.",
+    "subcategory": "Environ 309",
+    "title": "Earthquake Risk Assessment, part 1",
+    "description": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
+    "image": "assets/images/Liquefaction-Risk-Layout.jpg",
+    "fullDescription": "This analysis used raster calculations to combine geologic factors like soil porosity and water availability, then reclassed the values to ranked scores."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Environ 309",
+    "title": "Vector Suitability Analysis",
+    "description": "Spatial analysis and cartographic visualization of hypothetical risk surrounding Fermi 2 Nuclear Generating Station.",
     "image": "assets/images/FermiLayout.jpg",
-    "fullDescription": "Detailed site analysis incorporating infrastructure, environmental features, and spatial relationships using professional cartographic design principles."
+    "fullDescription": "This assignment used stacked data queries to identify regions of interest, as well as spatial overlay tools to combine the various data sources. I also utilized Esri data enrichment to calculate spatial statistics for the region."
   },
   {
     "category": "coursework",
-    "subcategory": "",
-    "title": "Automated Raster Suitability Analysis",
-    "description": "Employed ArcGIS Model Builder and Python scripting to analyze multiple raster datasets.",
+    "subcategory": "Earth 408",
+    "title": "Raster Suitability Analysis",
+    "description": "Employed ArcGIS Model Builder and Python scripting to combine multiple raster datasets.",
     "image": "assets/images/suitability_analysis.jpg",
-    "fullDescription": "Completed for Earth 408. This project uses automated workflow modeling to perform complex raster calculations and criteria-based filtering across multiple datasets."
-  },
-  {
-    "category": "analysis",
-    "subcategory": "",
-    "title": "Watershed Boundary Delineation",
-    "description": "Used digital elevation models to calculate watershed boundaries, flow direction, and stream order.",
-    "image": "assets/images/watershed.jpg",
-    "fullDescription": "Comprehensive hydrologic analysis using ArcGIS Hydrologic Modeling tools to understand watershed characteristics and water flow patterns."
+    "fullDescription": "Completed for Earth 408. In this assignment I employed ArcGIS Model Builder and Python script to analyze and edit multiple raster datasets at once using various raster calculations, ultimately outputting a dataset that displayed areas with the correct limiting criteria.."
   },
   {
     "category": "coursework",
-    "subcategory": "",
-    "title": "3D Terrain and Cost Path Analysis",
-    "description": "Calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
-    "image": "assets/images/cost_path.jpg",
-    "fullDescription": "Created 3D terrain visualizations and performed cost-distance analysis to identify least-cost paths across complex topography."
+    "subcategory": "Earth 408",
+    "title": "Watershed Boundary Delineation",
+    "description": "Here I used a digital elevation model to calculate the watershed boundary, flow direction, and stream order of the study area, using ArcGIS Hydrologic Modeling tools.",
+    "image": "assets/images/watershed.jpg",
+    "fullDescription": 
   },
   {
-    "category": "analysis",
-    "subcategory": "",
+    "category": "coursework",
+    "subcategory": "Earth 408",
+    "title": "3D Terrain and Cost Path Analysis",
+    "description": "In this project I calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
+    "image": "assets/images/cost_path.jpg",
+    "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the “cost” of a path is calculated and changed given different input parameters."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Earth 408",
     "title": "Harmful Algal Bloom Formation Study",
     "description": "Final project conducting comprehensive watershed analysis to study HAB formation in local lakes.",
     "image": "svg",
@@ -66,34 +66,49 @@
   },
   {
     "category": "personal",
-    "subcategory": "",
+    "subcategory": "QGIS",
     "title": "Lake Michigan Bathymetry Visualization",
-    "description": "Exploring bathymetry data visualization with various color palettes and cartographic styles.",
+    "description": "Exploring bathymetry data visualization by testing color palettes and cartographic styles.",
     "image": "assets/images/lake_michigan.png",
-    "fullDescription": "Personal project using QGIS to create visually compelling representations of Lake Michigan's underwater topography through careful color selection and design."
-  },
+    "fullDescription": 
   {
     "category": "personal",
-    "subcategory": "",
+    "subcategory": "QGIS",
     "title": "Lake Superior Bathymetry Visualization",
-    "description": "Cartographic exploration of Lake Superior's depth and underwater features.",
+    "description": "I continue the bathymetry series with Lake Superior, showcasing different color palettes and design",
     "image": "assets/images/lake_superior.jpg",
-    "fullDescription": "Continuing the bathymetry series with Lake Superior, showcasing different color palettes and design approaches to represent the deepest of the Great Lakes."
-  },
+    "fullDescription":  
   {
     "category": "personal",
-    "subcategory": "",
+    "subcategory": "QGIS",
     "title": "Mumbai Elevation Visualization",
-    "description": "Stylistic elevation visualization of Mumbai showcasing topographic variations.",
+    "description": "Stylisticly displaying the area's elevation.",
     "image": "assets/images/mumbai.jpg",
-    "fullDescription": "Creative cartographic design exploring Mumbai's urban landscape through elevation data, emphasizing the relationship between topography and urban development."
+    "fullDescription": 
   },
   {
     "category": "personal",
-    "subcategory": "",
+    "subcategory": "QGIS",
     "title": "UMS Ticket Office Venues Map",
-    "description": "Custom map showcasing venue locations for the University Musical Society Ticket Office.",
+    "description": "This map shows the venues of my undergraduate job at the UMS Ticket Office, which I created to show how GIS can be applied beyond strictly scientific fields. Spatial data is all around us!",
     "image": "assets/images/ums.png",
-    "fullDescription": "Practical mapping project combining functionality with aesthetic design to help patrons locate performance venues across the University of Michigan campus."
+    "fullDescription": 
+  },
+   {
+    "category": "personal",
+    "subcategory": "QGIS",
+    "title": "Douglas Lake Bathymetry",
+    "description": "Visualization of Duglas Lake's depth and features.",
+    "image": "assets/images/douglaslake_newcolor.JPEG",
+    "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
+  },
+   {
+    "category": "personal",
+    "subcategory": "ArcGIS Pro",
+    "subcategory": "30 Day Map Challenge",
+    "title": "Shipwreck Locations in Lake Superior",
+    "description": "Day one of the 2025 30 Day Map Challenge: theme is Points.",
+    "image": "assets/images/douglaslake_newcolor.JPEG",
+    "fullDescription": "I was inspired by this being the 50th year since the SS Edmund Fitzgerald was lost. November is a particularly dangerous month for ships on the Great Lakes."
   }
 ]
