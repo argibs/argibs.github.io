@@ -45,7 +45,7 @@
     "title": "Watershed Boundary Delineation",
     "description": "Here I used a digital elevation model to calculate the watershed boundary, flow direction, and stream order of the study area, using ArcGIS Hydrologic Modeling tools.",
     "image": "assets/images/watershed.jpg",
-    "fullDescription": 
+    "fullDescription": ""
   },
   {
     "category": "coursework",
@@ -56,35 +56,26 @@
     "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the “cost” of a path is calculated and changed given different input parameters."
   },
   {
-    "category": "coursework",
-    "subcategory": "Earth 408",
-    "title": "Harmful Algal Bloom Formation Study",
-    "description": "Final project conducting comprehensive watershed analysis to study HAB formation in local lakes.",
-    "image": "svg",
-    "fullDescription": "This research project combines hydrologic modeling, water quality analysis, and spatial statistics to understand the environmental factors contributing to harmful algal bloom formation. Research presented in poster format.",
-    "pdfLink": "assets/final_proj/final.pdf"
-  },
-  {
     "category": "personal",
     "subcategory": "QGIS",
     "title": "Lake Michigan Bathymetry Visualization",
     "description": "Exploring bathymetry data visualization by testing color palettes and cartographic styles.",
     "image": "assets/images/lake_michigan.png",
-    "fullDescription": 
+    "fullDescription": ""
   {
     "category": "personal",
     "subcategory": "QGIS",
     "title": "Lake Superior Bathymetry Visualization",
     "description": "I continue the bathymetry series with Lake Superior, showcasing different color palettes and design",
     "image": "assets/images/lake_superior.jpg",
-    "fullDescription":  
+    "fullDescription": ""
   {
     "category": "personal",
     "subcategory": "QGIS",
     "title": "Mumbai Elevation Visualization",
     "description": "Stylisticly displaying the area's elevation.",
     "image": "assets/images/mumbai.jpg",
-    "fullDescription": 
+    "fullDescription": ""
   },
   {
     "category": "personal",
@@ -92,7 +83,7 @@
     "title": "UMS Ticket Office Venues Map",
     "description": "This map shows the venues of my undergraduate job at the UMS Ticket Office, which I created to show how GIS can be applied beyond strictly scientific fields. Spatial data is all around us!",
     "image": "assets/images/ums.png",
-    "fullDescription": 
+    "fullDescription": ""
   },
    {
     "category": "personal",
