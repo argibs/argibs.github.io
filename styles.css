@@ -736,6 +736,29 @@ p {
     border-color: var(--primary-color);
 }
 
+/* Subcategory badge on dropdown button */
+.subcategory-badge {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.filter-btn-with-dropdown.active .subcategory-badge {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.subcategory-badge.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /* Chevron indicator for dropdown */
 .filter-btn-with-dropdown::after {
     content: '';
@@ -787,8 +810,10 @@ p {
     font-size: 0.85rem;
     color: var(--text-primary);
     cursor: pointer;
-    transition: background 0.18s ease;
+    transition: background 0.18s ease, color 0.18s ease;
     user-select: none;
+    position: relative;
+    padding-left: 2.5rem;
 }
 
 .filter-dropdown-item + .filter-dropdown-item {
@@ -801,6 +826,26 @@ p {
 
 .filter-dropdown-item:active {
     background: rgba(0, 0, 0, 0.06);
+}
+
+/* Selected dropdown item styling */
+.filter-dropdown-item.selected {
+    background: rgba(61, 90, 74, 0.08);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.filter-dropdown-item.selected:hover {
+    background: rgba(61, 90, 74, 0.12);
+}
+
+.filter-dropdown-item.selected::before {
+    content: '✓';
+    position: absolute;
+    left: 1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1rem;
 }
 
 /* Projects grid / cards */

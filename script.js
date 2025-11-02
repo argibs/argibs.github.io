@@ -650,6 +650,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* --------- Track current filter selection --------- */
+let currentFilterSelection = {
+    category: null,
+    subcategory: null
+};
+
 /* --------- Derive filters (categories -> subcategories) --------- */
 function deriveFiltersFromProjects(projects) {
     const map = new Map();
@@ -684,6 +690,7 @@ function buildFilters(container, filters) {
     allBtn.addEventListener("click", () => {
         clearActiveFilters();
         allBtn.classList.add("active");
+        currentFilterSelection = { category: null, subcategory: null };
         applyFilter(null, null); // null category shows all
     });
     container.appendChild(allBtn);
@@ -701,6 +708,7 @@ function buildFilters(container, filters) {
                 // Single-active-filter behavior: clear others, apply this
                 clearActiveFilters();
                 btn.classList.add("active");
+                currentFilterSelection = { category: category, subcategory: null };
                 applyFilter(category, null);
             });
             container.appendChild(btn);
@@ -714,7 +722,15 @@ function buildFilters(container, filters) {
             button.type = "button";
             button.setAttribute("aria-haspopup", "true");
             button.setAttribute("aria-expanded", "false");
-            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+
+            // Create button content with text and badge
+            const buttonText = document.createElement("span");
+            buttonText.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            button.appendChild(buttonText);
+
+            const badge = document.createElement("span");
+            badge.className = "subcategory-badge";
+            button.appendChild(badge);
 
             const dropdown = document.createElement("div");
             dropdown.className = "filter-dropdown";
@@ -730,6 +746,18 @@ function buildFilters(container, filters) {
                 e.stopPropagation();
                 clearActiveFilters();
                 button.classList.add("active");
+                currentFilterSelection = { category: category, subcategory: null };
+
+                // Update dropdown item selection states
+                dropdown.querySelectorAll('.filter-dropdown-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                allCategoryItem.classList.add('selected');
+
+                // Hide badge since showing all in category
+                badge.textContent = '';
+                badge.classList.remove('visible');
+
                 applyFilter(category, null); // Show all in this category
                 closeAllDropdowns();
             });
@@ -748,6 +776,18 @@ function buildFilters(container, filters) {
                     // Single-active-filter behavior: clear others, apply this (category + sub)
                     clearActiveFilters();
                     button.classList.add("active");
+                    currentFilterSelection = { category: category, subcategory: sub };
+
+                    // Update dropdown item selection states
+                    dropdown.querySelectorAll('.filter-dropdown-item').forEach(dropdownItem => {
+                        dropdownItem.classList.remove('selected');
+                    });
+                    item.classList.add('selected');
+
+                    // Show badge with subcategory name
+                    badge.textContent = sub;
+                    badge.classList.add('visible');
+
                     applyFilter(category, sub);
                     closeAllDropdowns();
                 });
@@ -885,6 +925,17 @@ function clearActiveFilters() {
         if (btn.classList.contains("filter-btn-with-dropdown")) {
             btn.setAttribute("aria-expanded", "false");
         }
+    });
+
+    // Remove selected states from dropdown items
+    document.querySelectorAll(".filter-dropdown-item").forEach(item => {
+        item.classList.remove("selected");
+    });
+
+    // Hide all badges
+    document.querySelectorAll(".subcategory-badge").forEach(badge => {
+        badge.textContent = '';
+        badge.classList.remove("visible");
     });
 
     // Show all project cards
