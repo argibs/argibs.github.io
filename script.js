@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initNavigation();
     initScrollProgress();
-    loadProjects(); // This will load projects and init filters & modal
+    loadProjects();
     initSmoothScroll();
     initAnimations();
     initParallax();
@@ -87,302 +87,6 @@ function initNavigation() {
     }
 
     window.addEventListener('scroll', highlightNavLink);
-}
-
-// Build category/subcategory structure from project data
-function buildCategoryStructure() {
-    const structure = {};
-
-    projectsData.forEach(project => {
-        const category = project.category;
-        const subcategory = project.subcategory ? project.subcategory.trim() : '';
-
-        if (!structure[category]) {
-            structure[category] = new Set();
-        }
-
-        if (subcategory) {
-            structure[category].add(subcategory);
-        }
-    });
-
-    // Convert Sets to Arrays
-    Object.keys(structure).forEach(cat => {
-        structure[cat] = Array.from(structure[cat]).sort();
-    });
-
-    return structure;
-}
-
-// Create SVG shadow with Gaussian blur filter
-function createSVGShadow(width, height) {
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('class', 'dropdown-shadow');
-    svg.setAttribute('width', width + 100);
-    svg.setAttribute('height', height + 100);
-    svg.setAttribute('viewBox', `0 0 ${width + 100} ${height + 100}`);
-
-    const defs = document.createElementNS(svgNS, 'defs');
-    const filter = document.createElementNS(svgNS, 'filter');
-    filter.setAttribute('id', 'blur-' + Math.random().toString(36).substr(2, 9));
-    filter.setAttribute('x', '-0.053211679');
-    filter.setAttribute('width', '1.1064234');
-    filter.setAttribute('y', '-0.068773585');
-    filter.setAttribute('height', '1.1375472');
-
-    const feGaussianBlur = document.createElementNS(svgNS, 'feGaussianBlur');
-    feGaussianBlur.setAttribute('stdDeviation', '6.075');
-
-    filter.appendChild(feGaussianBlur);
-    defs.appendChild(filter);
-    svg.appendChild(defs);
-
-    const g = document.createElementNS(svgNS, 'g');
-    g.setAttribute('transform', 'translate(50,46)');
-
-    const path = document.createElementNS(svgNS, 'path');
-    path.setAttribute('style', 'opacity:0.14;fill:#0e232e;fill-opacity:1;stroke:none;filter:url(#' + filter.getAttribute('id') + ')');
-    path.setAttribute('d', `M ${width/2} 20 L ${width/2-10} 30 L 20 30 C 10 30 0 40 0 50 L 0 ${height} L ${width} ${height} L ${width} 50 C ${width} 40 ${width-10} 30 ${width-20} 30 L ${width/2+10} 30 L ${width/2} 20 Z`);
-
-    g.appendChild(path);
-    svg.appendChild(g);
-
-    return svg;
-}
-
-// Create SVG border container with animated paths
-function createSVGBorder(width, height) {
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('class', 'dropdown-container');
-    svg.setAttribute('width', width);
-    svg.setAttribute('height', height);
-    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-
-    const g = document.createElementNS(svgNS, 'g');
-    g.setAttribute('transform', 'translate(0,20)');
-
-    // Path 1: Left side + top-left + notch left
-    const path1 = document.createElementNS(svgNS, 'path');
-    path1.setAttribute('class', 'dropdown-border-1');
-    path1.setAttribute('fill', 'transparent');
-    path1.setAttribute('d', `M ${width/2},${height-20} H 0 V 30 C 0,20 10,10 20,10 H ${width/2-10} L ${width/2},0`);
-
-    // Path 2: Notch right + top-right + right side + bottom
-    const path2 = document.createElementNS(svgNS, 'path');
-    path2.setAttribute('class', 'dropdown-border-2');
-    path2.setAttribute('fill', 'transparent');
-    path2.setAttribute('d', `M ${width/2},0 L ${width/2+10},10 H ${width-20} C ${width-10},10 ${width},20 ${width},30 V ${height-20} H ${width/2}`);
-
-    g.appendChild(path1);
-    g.appendChild(path2);
-    svg.appendChild(g);
-
-    return svg;
-}
-
-// Create animated dropdown menu with SVG borders
-function createAnimatedDropdown(category, subcategories, buttonWidth) {
-    const menu = document.createElement('div');
-    menu.className = 'animated-dropdown-menu';
-    menu.style.width = buttonWidth + 'px';
-
-    const itemHeight = 46;
-    const numItems = subcategories.length + 1; // +1 for "All"
-    const menuHeight = (numItems * itemHeight) + 20;
-
-    // Create SVG shadow
-    const shadow = createSVGShadow(buttonWidth, menuHeight);
-    menu.appendChild(shadow);
-
-    // Create SVG border
-    const container = createSVGBorder(buttonWidth, menuHeight);
-    menu.appendChild(container);
-
-    // Create contents
-    const contents = document.createElement('div');
-    contents.className = 'dropdown-contents';
-    contents.style.width = buttonWidth + 'px';
-
-    // Add "All" item
-    const allItem = document.createElement('div');
-    allItem.className = 'dropdown-item';
-    allItem.setAttribute('data-value', '');
-    allItem.setAttribute('data-category', category);
-    allItem.textContent = 'All';
-    contents.appendChild(allItem);
-
-    // Add subcategory items
-    subcategories.forEach(sub => {
-        const item = document.createElement('div');
-        item.className = 'dropdown-item';
-        item.setAttribute('data-value', sub);
-        item.setAttribute('data-category', category);
-        item.textContent = sub;
-        contents.appendChild(item);
-    });
-
-    menu.appendChild(contents);
-    return menu;
-}
-
-// Build filter UI with CodePen-style dropdowns
-function buildFilterUI() {
-    const filterContainer = document.getElementById('projectFilters');
-    if (!filterContainer) return;
-
-    filterContainer.innerHTML = '';
-
-    const categoryStructure = buildCategoryStructure();
-
-    // Add "All Projects" button
-    const allButton = document.createElement('button');
-    allButton.className = 'filter-btn active';
-    allButton.setAttribute('data-filter', 'all');
-    allButton.textContent = 'All Projects';
-    filterContainer.appendChild(allButton);
-
-    // Add category buttons with dropdowns
-    Object.keys(categoryStructure).sort().forEach(category => {
-        const subcategories = categoryStructure[category];
-
-        if (subcategories.length > 0) {
-            // Create dropdown wrapper
-            const wrapper = document.createElement('div');
-            wrapper.className = 'filter-dropdown-wrapper';
-
-            // Create button with dropdown
-            const button = document.createElement('div');
-            button.className = 'filter-btn-with-dropdown';
-            button.setAttribute('data-category', category);
-
-            const textSpan = document.createElement('span');
-            textSpan.className = 'filter-btn-text';
-            textSpan.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-            button.appendChild(textSpan);
-
-            const badge = document.createElement('span');
-            badge.className = 'selected-subcategory-badge';
-            button.appendChild(badge);
-
-            wrapper.appendChild(button);
-
-            // Create animated dropdown (after button is in DOM to get width)
-            setTimeout(() => {
-                const buttonWidth = button.offsetWidth;
-                const dropdown = createAnimatedDropdown(category, subcategories, buttonWidth);
-                wrapper.appendChild(dropdown);
-            }, 0);
-
-            filterContainer.appendChild(wrapper);
-        } else {
-            // Create simple button (no dropdown)
-            const button = document.createElement('button');
-            button.className = 'filter-btn';
-            button.setAttribute('data-filter', category);
-            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-            filterContainer.appendChild(button);
-        }
-    });
-}
-
-// Initialize project filters with event handlers
-function initProjectFilters() {
-    const filterContainer = document.getElementById('projectFilters');
-    if (!filterContainer) return;
-
-    // Click on simple buttons (no dropdown)
-    filterContainer.addEventListener('click', function(e) {
-        const simpleBtn = e.target.closest('.filter-btn');
-        if (simpleBtn) {
-            const category = simpleBtn.getAttribute('data-filter');
-            setActiveFilter(simpleBtn);
-            filterProjects(category);
-        }
-    });
-
-    // Click on category button WITH dropdown - do nothing (hover handles it)
-    filterContainer.addEventListener('click', function(e) {
-        const dropdownBtn = e.target.closest('.filter-btn-with-dropdown');
-        if (dropdownBtn) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-    });
-
-    // Click on dropdown items
-    filterContainer.addEventListener('click', function(e) {
-        const item = e.target.closest('.dropdown-item');
-        if (!item) return;
-
-        const wrapper = item.closest('.filter-dropdown-wrapper');
-        const button = wrapper.querySelector('.filter-btn-with-dropdown');
-        const category = item.getAttribute('data-category');
-        const subcategory = item.getAttribute('data-value');
-
-        // Update visual indicator
-        updateSubcategoryBadge(button, subcategory);
-
-        // Set active and filter
-        setActiveFilter(button);
-        filterProjects(category, subcategory);
-    });
-
-    function setActiveFilter(element) {
-        document.querySelectorAll('.filter-btn, .filter-btn-with-dropdown').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        element.classList.add('active');
-    }
-
-    function updateSubcategoryBadge(button, subcategory) {
-        const badge = button.querySelector('.selected-subcategory-badge');
-        if (subcategory) {
-            badge.textContent = subcategory;
-            badge.style.display = 'inline-block';
-        } else {
-            badge.style.display = 'none';
-        }
-    }
-
-    function filterProjects(category, subcategory = '') {
-        const projectCards = document.querySelectorAll('.project-card');
-
-        projectCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            const cardSubcategory = card.getAttribute('data-subcategory') ? card.getAttribute('data-subcategory').trim() : '';
-
-            let shouldShow = false;
-
-            if (category === 'all') {
-                shouldShow = true;
-            } else if (category === cardCategory) {
-                if (!subcategory) {
-                    shouldShow = true;
-                } else {
-                    shouldShow = (cardSubcategory === subcategory);
-                }
-            }
-
-            if (shouldShow) {
-                showCard(card);
-            } else {
-                hideCard(card);
-            }
-        });
-    }
-
-    function showCard(card) {
-        card.style.display = 'flex';
-        card.style.opacity = '0';
-        setTimeout(() => { card.style.opacity = '1'; }, 10);
-    }
-
-    function hideCard(card) {
-        card.style.opacity = '0';
-        setTimeout(() => { card.style.display = 'none'; }, 300);
-    }
 }
 
 // Smooth scrolling for anchor links
@@ -494,9 +198,14 @@ async function loadProjects() {
         const response = await fetch('projects.json');
         projectsData = await response.json();
         renderProjectCards();
-        buildFilterUI();
-        initProjectFilters();
         initProjectModal();
+
+        // Initialize new filtering system
+        const filtersContainer = document.getElementById("projectFilters");
+        if (filtersContainer) {
+            const filters = deriveFiltersFromProjects(projectsData);
+            buildFilters(filtersContainer, filters);
+        }
     } catch (error) {
         console.error('Error loading projects:', error);
     }
@@ -939,3 +648,258 @@ class FastTopographicMap {
 document.addEventListener('DOMContentLoaded', () => {
     new FastTopographicMap();
 });
+
+
+/* --------- Derive filters (categories -> subcategories) --------- */
+function deriveFiltersFromProjects(projects) {
+    const map = new Map();
+    projects.forEach(p => {
+        const cat = p.category || "Uncategorized";
+        const sub = p.subcategory || null;
+        if (!map.has(cat)) map.set(cat, new Set());
+        if (sub) map.get(cat).add(sub);
+    });
+
+    const filters = [];
+    for (const [cat, subs] of map) {
+        filters.push({
+            category: cat,
+            subcategories: Array.from(subs).sort()
+        });
+    }
+
+    // Sort categories alphabetically (optional)
+    filters.sort((a,b) => a.category.localeCompare(b.category));
+    return filters;
+}
+
+/* --------- Build filter UI (buttons + dropdowns) --------- */
+function buildFilters(container, filters) {
+    container.innerHTML = "";
+
+    // Add "All Projects" button at the start
+    const allBtn = document.createElement("button");
+    allBtn.className = "filter-btn active"; // Active by default
+    allBtn.textContent = "All Projects";
+    allBtn.addEventListener("click", () => {
+        clearActiveFilters();
+        allBtn.classList.add("active");
+        applyFilter(null, null); // null category shows all
+    });
+    container.appendChild(allBtn);
+
+    // Add category filters
+    filters.forEach(filter => {
+        const { category, subcategories } = filter;
+
+        if (!subcategories || subcategories.length === 0) {
+            // simple button
+            const btn = document.createElement("button");
+            btn.className = "filter-btn";
+            btn.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            btn.addEventListener("click", () => {
+                // Single-active-filter behavior: clear others, apply this
+                clearActiveFilters();
+                btn.classList.add("active");
+                applyFilter(category, null);
+            });
+            container.appendChild(btn);
+        } else {
+            // button + dropdown
+            const wrapper = document.createElement("div");
+            wrapper.className = "filter-dropdown-wrapper";
+
+            const button = document.createElement("button");
+            button.className = "filter-btn-with-dropdown";
+            button.type = "button";
+            button.setAttribute("aria-haspopup", "true");
+            button.setAttribute("aria-expanded", "false");
+            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+
+            const dropdown = document.createElement("div");
+            dropdown.className = "filter-dropdown";
+            dropdown.setAttribute("role", "menu");
+
+            // Add "All [Category]" option first
+            const allCategoryItem = document.createElement("div");
+            allCategoryItem.className = "filter-dropdown-item";
+            allCategoryItem.setAttribute("role", "menuitem");
+            allCategoryItem.tabIndex = 0;
+            allCategoryItem.textContent = "All " + category.charAt(0).toUpperCase() + category.slice(1);
+            allCategoryItem.addEventListener("click", (e) => {
+                e.stopPropagation();
+                clearActiveFilters();
+                button.classList.add("active");
+                applyFilter(category, null); // Show all in this category
+                closeAllDropdowns();
+            });
+            dropdown.appendChild(allCategoryItem);
+
+            // Add subcategory options
+            subcategories.forEach(sub => {
+                const item = document.createElement("div");
+                item.className = "filter-dropdown-item";
+                item.setAttribute("role", "menuitem");
+                item.tabIndex = 0;
+                item.textContent = sub;
+
+                item.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    // Single-active-filter behavior: clear others, apply this (category + sub)
+                    clearActiveFilters();
+                    button.classList.add("active");
+                    applyFilter(category, sub);
+                    closeAllDropdowns();
+                });
+
+                dropdown.appendChild(item);
+            });
+
+            wrapper.appendChild(button);
+            wrapper.appendChild(dropdown);
+            container.appendChild(wrapper);
+
+            // Toggle behavior
+            button.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleDropdown(button, dropdown);
+            });
+        }
+    });
+
+    // Click outside to close any open dropdowns
+    document.addEventListener("click", (e) => {
+        // If click wasn't inside a filter-dropdown-wrapper, close all
+        if (!e.target.closest(".filter-dropdown-wrapper")) {
+            closeAllDropdowns();
+        }
+    });
+
+    // Handle window resize to update flipping if a dropdown is open
+    window.addEventListener("resize", () => {
+        document.querySelectorAll(".filter-dropdown.open").forEach(dd => {
+            // force recompute flipping
+            const btn = dd.parentElement.querySelector(".filter-btn-with-dropdown");
+            if (btn) computeFlipForDropdown(dd);
+        });
+    });
+}
+
+/* --------- Dropdown toggle & smart flip --------- */
+function toggleDropdown(button, dropdown) {
+    const alreadyOpen = dropdown.classList.contains("open");
+
+    // Close others
+    closeAllDropdowns();
+
+    if (!alreadyOpen) {
+        // Open this one
+        dropdown.classList.add("open");
+        button.classList.add("active");
+        button.setAttribute("aria-expanded", "true");
+
+        // ensure width matches button (wrapper is inline-block so 100% works)
+        dropdown.style.minWidth = `${button.offsetWidth}px`;
+
+        // compute smart flip
+        computeFlipForDropdown(dropdown);
+    } else {
+        dropdown.classList.remove("open", "flip");
+        button.classList.remove("active");
+        button.setAttribute("aria-expanded", "false");
+    }
+}
+
+function computeFlipForDropdown(dropdown) {
+    dropdown.classList.remove("flip");
+    // get projected rect when dropdown opens downward (top = button bottom)
+    const wrapperRect = dropdown.parentElement.getBoundingClientRect();
+    // compute dropdown height if opened (temporarily make it visible to measure)
+    dropdown.style.display = "block";
+    dropdown.style.visibility = "hidden";
+    dropdown.style.opacity = "0";
+    dropdown.classList.add("open"); // ensure transform doesn't collapse height measurement in some browsers
+
+    const rect = dropdown.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - wrapperRect.bottom;
+    const spaceAbove = wrapperRect.top;
+
+    // threshold: if not enough room below but enough above, flip
+    if (spaceBelow < rect.height + 12 && spaceAbove > rect.height + 12) {
+        dropdown.classList.add("flip");
+    } else {
+        dropdown.classList.remove("flip");
+    }
+
+    // restore style decorations
+    dropdown.style.removeProperty("display");
+    dropdown.style.removeProperty("visibility");
+    dropdown.style.removeProperty("opacity");
+}
+
+/* --------- Close helpers --------- */
+function closeAllDropdowns() {
+    document.querySelectorAll(".filter-dropdown.open").forEach(dd => {
+        dd.classList.remove("open", "flip");
+        const btn = dd.parentElement.querySelector(".filter-btn-with-dropdown");
+        if (btn) {
+            btn.classList.remove("active");
+            btn.setAttribute("aria-expanded", "false");
+        }
+    });
+}
+
+/* --------- Filter application (single-active-filter behavior) --------- */
+function applyFilter(category, subcategory) {
+    // Find all project cards and hide/show based on dataset attributes
+    const cards = document.querySelectorAll(".projects-grid .project-card");
+    cards.forEach(card => {
+        const cat = card.dataset.category || "";
+        const sub = card.dataset.subcategory || "";
+        let show = true;
+
+        // If no category specified (null), show all projects
+        if (!category) {
+            show = true;
+        } else {
+            // Filter by category
+            if (cat !== category) {
+                show = false;
+            } else if (subcategory) {
+                // If subcategory specified, must match
+                if (sub !== subcategory) {
+                    show = false;
+                }
+            }
+        }
+
+        card.classList.toggle("hidden", !show);
+    });
+}
+
+/* --------- Clear active filters (removes active styling and shows all projects) --------- */
+function clearActiveFilters() {
+    // Remove .active from all filter buttons
+    document.querySelectorAll(".project-filters .filter-btn, .project-filters .filter-btn-with-dropdown").forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.classList.contains("filter-btn-with-dropdown")) {
+            btn.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // Show all project cards
+    document.querySelectorAll(".projects-grid .project-card").forEach(card => {
+        card.classList.remove("hidden");
+    });
+}
+
+/* --------- Utility helpers --------- */
+function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}

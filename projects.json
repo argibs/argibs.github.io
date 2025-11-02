@@ -25,7 +25,7 @@
   },
   {
     "category": "coursework",
-    "subcategory": " test2",
+    "subcategory": "test2",
     "title": "Fermi National Accelerator Laboratory Site Analysis",
     "description": "Spatial analysis and cartographic visualization of the Fermi Lab facility and surrounding area.",
     "image": "assets/images/FermiLayout.jpg",
