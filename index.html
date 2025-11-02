@@ -108,13 +108,8 @@
                 <h2 class="section-title">Featured Projects</h2>
                 <p class="section-subtitle">A showcase of coursework, analysis projects, and personal cartographic explorations</p>
 
-                <!-- Project Filters -->
-                <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="coursework">Coursework</button>
-                    <button class="filter-btn" data-filter="analysis">Analysis</button>
-                    <button class="filter-btn" data-filter="personal">Personal</button>
-                </div>
+                <!-- Project Filters (populated dynamically) -->
+                <div class="project-filters" id="projectFilters"></div>
 
                 <!-- Projects Grid (populated dynamically from projects.json) -->
                 <div class="projects-grid" id="projectsGrid"></div>

@@ -668,12 +668,20 @@ p {
 /* Project Filters */
 .project-filters {
     display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
     flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
 }
 
+/* Filter Dropdown Wrapper */
+.filter-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Category Filter Buttons (Simple, No Dropdown) */
 .filter-btn {
     padding: 0.48rem 1.44rem;
     background: white;
@@ -682,20 +690,176 @@ p {
     color: var(--text-primary);
     font-weight: 500;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.2s ease;
     font-size: 0.8rem;
 }
 
 .filter-btn:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 .filter-btn.active {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+}
+
+/* Category Filter Buttons WITH Dropdown */
+.filter-btn-with-dropdown {
+    padding: 0.48rem 1.44rem;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.filter-btn-with-dropdown:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-btn-with-dropdown.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Chevron indicator for dropdown */
+.filter-btn-with-dropdown::after {
+    content: '';
+    display: inline-block;
+    margin-left: 0.2rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid currentColor;
+    width: 0;
+    height: 0;
+}
+
+/* Selected Subcategory Badge */
+.selected-subcategory-badge {
+    display: none;
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: inherit;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.filter-btn-with-dropdown:not(.active) .selected-subcategory-badge {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Animated Dropdown Menu (CodePen Style) */
+.animated-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* SVG Shadow (Gaussian Blur) */
+.dropdown-shadow {
+    position: absolute;
+    left: -50px;
+    top: -46px;
+    opacity: 0;
+    transition: opacity 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* SVG Border Container */
+.dropdown-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* SVG Border Paths (Animated) */
+.dropdown-border-1,
+.dropdown-border-2 {
+    fill: #fff;
+    fill-opacity: 0;
+    stroke: var(--border-color);
+    stroke-width: 1.5;
+    stroke-dasharray: 0 800;
+    stroke-dashoffset: 0;
+    transition: stroke 400ms cubic-bezier(0.4, 0.0, 0.2, 1),
+                stroke-dasharray 400ms cubic-bezier(0.4, 0.0, 0.2, 1),
+                stroke-dashoffset 400ms cubic-bezier(0.4, 0.0, 0.2, 1),
+                fill-opacity 400ms 40ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Dropdown Contents */
+.dropdown-contents {
+    position: relative;
+    opacity: 0;
+    padding: 0.5rem 0;
+    transition: opacity 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    background: white;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e9ecef;
+    transition: background 200ms;
+    user-select: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #f8f8f8;
+}
+
+.dropdown-item:active {
+    background: #f5f5f5;
+}
+
+/* EXPANDED STATE (On Hover) */
+.filter-dropdown-wrapper:hover .dropdown-shadow {
+    opacity: 1;
+}
+
+.filter-dropdown-wrapper:hover .dropdown-border-1,
+.filter-dropdown-wrapper:hover .dropdown-border-2 {
+    fill-opacity: 1;
+    stroke: var(--border-color);
+    stroke-dasharray: 800 800;
+    stroke-dashoffset: 0;
+}
+
+.filter-dropdown-wrapper:hover .dropdown-contents {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 400ms 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.filter-dropdown-wrapper:hover .animated-dropdown-menu {
+    pointer-events: auto;
 }
 
 /* Deprecated */

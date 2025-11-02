@@ -89,48 +89,299 @@ function initNavigation() {
     window.addEventListener('scroll', highlightNavLink);
 }
 
-// Project filtering system (for card grid)
-function initProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card[data-category]');
+// Build category/subcategory structure from project data
+function buildCategoryStructure() {
+    const structure = {};
 
-    if (filterButtons.length === 0) return;
+    projectsData.forEach(project => {
+        const category = project.category;
+        const subcategory = project.subcategory ? project.subcategory.trim() : '';
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
+        if (!structure[category]) {
+            structure[category] = new Set();
+        }
 
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Hide non-matching cards
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (filter !== 'all' && category !== filter) {
-                    hideCard(card);
-                }
-            });
-
-            // Show matching cards
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    showCard(card);
-                }
-            });
-        });
+        if (subcategory) {
+            structure[category].add(subcategory);
+        }
     });
+
+    // Convert Sets to Arrays
+    Object.keys(structure).forEach(cat => {
+        structure[cat] = Array.from(structure[cat]).sort();
+    });
+
+    return structure;
+}
+
+// Create SVG shadow with Gaussian blur filter
+function createSVGShadow(width, height) {
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('class', 'dropdown-shadow');
+    svg.setAttribute('width', width + 100);
+    svg.setAttribute('height', height + 100);
+    svg.setAttribute('viewBox', `0 0 ${width + 100} ${height + 100}`);
+
+    const defs = document.createElementNS(svgNS, 'defs');
+    const filter = document.createElementNS(svgNS, 'filter');
+    filter.setAttribute('id', 'blur-' + Math.random().toString(36).substr(2, 9));
+    filter.setAttribute('x', '-0.053211679');
+    filter.setAttribute('width', '1.1064234');
+    filter.setAttribute('y', '-0.068773585');
+    filter.setAttribute('height', '1.1375472');
+
+    const feGaussianBlur = document.createElementNS(svgNS, 'feGaussianBlur');
+    feGaussianBlur.setAttribute('stdDeviation', '6.075');
+
+    filter.appendChild(feGaussianBlur);
+    defs.appendChild(filter);
+    svg.appendChild(defs);
+
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('transform', 'translate(50,46)');
+
+    const path = document.createElementNS(svgNS, 'path');
+    path.setAttribute('style', 'opacity:0.14;fill:#0e232e;fill-opacity:1;stroke:none;filter:url(#' + filter.getAttribute('id') + ')');
+    path.setAttribute('d', `M ${width/2} 20 L ${width/2-10} 30 L 20 30 C 10 30 0 40 0 50 L 0 ${height} L ${width} ${height} L ${width} 50 C ${width} 40 ${width-10} 30 ${width-20} 30 L ${width/2+10} 30 L ${width/2} 20 Z`);
+
+    g.appendChild(path);
+    svg.appendChild(g);
+
+    return svg;
+}
+
+// Create SVG border container with animated paths
+function createSVGBorder(width, height) {
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('class', 'dropdown-container');
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('transform', 'translate(0,20)');
+
+    // Path 1: Left side + top-left + notch left
+    const path1 = document.createElementNS(svgNS, 'path');
+    path1.setAttribute('class', 'dropdown-border-1');
+    path1.setAttribute('fill', 'transparent');
+    path1.setAttribute('d', `M ${width/2},${height-20} H 0 V 30 C 0,20 10,10 20,10 H ${width/2-10} L ${width/2},0`);
+
+    // Path 2: Notch right + top-right + right side + bottom
+    const path2 = document.createElementNS(svgNS, 'path');
+    path2.setAttribute('class', 'dropdown-border-2');
+    path2.setAttribute('fill', 'transparent');
+    path2.setAttribute('d', `M ${width/2},0 L ${width/2+10},10 H ${width-20} C ${width-10},10 ${width},20 ${width},30 V ${height-20} H ${width/2}`);
+
+    g.appendChild(path1);
+    g.appendChild(path2);
+    svg.appendChild(g);
+
+    return svg;
+}
+
+// Create animated dropdown menu with SVG borders
+function createAnimatedDropdown(category, subcategories, buttonWidth) {
+    const menu = document.createElement('div');
+    menu.className = 'animated-dropdown-menu';
+    menu.style.width = buttonWidth + 'px';
+
+    const itemHeight = 46;
+    const numItems = subcategories.length + 1; // +1 for "All"
+    const menuHeight = (numItems * itemHeight) + 20;
+
+    // Create SVG shadow
+    const shadow = createSVGShadow(buttonWidth, menuHeight);
+    menu.appendChild(shadow);
+
+    // Create SVG border
+    const container = createSVGBorder(buttonWidth, menuHeight);
+    menu.appendChild(container);
+
+    // Create contents
+    const contents = document.createElement('div');
+    contents.className = 'dropdown-contents';
+    contents.style.width = buttonWidth + 'px';
+
+    // Add "All" item
+    const allItem = document.createElement('div');
+    allItem.className = 'dropdown-item';
+    allItem.setAttribute('data-value', '');
+    allItem.setAttribute('data-category', category);
+    allItem.textContent = 'All';
+    contents.appendChild(allItem);
+
+    // Add subcategory items
+    subcategories.forEach(sub => {
+        const item = document.createElement('div');
+        item.className = 'dropdown-item';
+        item.setAttribute('data-value', sub);
+        item.setAttribute('data-category', category);
+        item.textContent = sub;
+        contents.appendChild(item);
+    });
+
+    menu.appendChild(contents);
+    return menu;
+}
+
+// Build filter UI with CodePen-style dropdowns
+function buildFilterUI() {
+    const filterContainer = document.getElementById('projectFilters');
+    if (!filterContainer) return;
+
+    filterContainer.innerHTML = '';
+
+    const categoryStructure = buildCategoryStructure();
+
+    // Add "All Projects" button
+    const allButton = document.createElement('button');
+    allButton.className = 'filter-btn active';
+    allButton.setAttribute('data-filter', 'all');
+    allButton.textContent = 'All Projects';
+    filterContainer.appendChild(allButton);
+
+    // Add category buttons with dropdowns
+    Object.keys(categoryStructure).sort().forEach(category => {
+        const subcategories = categoryStructure[category];
+
+        if (subcategories.length > 0) {
+            // Create dropdown wrapper
+            const wrapper = document.createElement('div');
+            wrapper.className = 'filter-dropdown-wrapper';
+
+            // Create button with dropdown
+            const button = document.createElement('div');
+            button.className = 'filter-btn-with-dropdown';
+            button.setAttribute('data-category', category);
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'filter-btn-text';
+            textSpan.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            button.appendChild(textSpan);
+
+            const badge = document.createElement('span');
+            badge.className = 'selected-subcategory-badge';
+            button.appendChild(badge);
+
+            wrapper.appendChild(button);
+
+            // Create animated dropdown (after button is in DOM to get width)
+            setTimeout(() => {
+                const buttonWidth = button.offsetWidth;
+                const dropdown = createAnimatedDropdown(category, subcategories, buttonWidth);
+                wrapper.appendChild(dropdown);
+            }, 0);
+
+            filterContainer.appendChild(wrapper);
+        } else {
+            // Create simple button (no dropdown)
+            const button = document.createElement('button');
+            button.className = 'filter-btn';
+            button.setAttribute('data-filter', category);
+            button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            filterContainer.appendChild(button);
+        }
+    });
+}
+
+// Initialize project filters with event handlers
+function initProjectFilters() {
+    const filterContainer = document.getElementById('projectFilters');
+    if (!filterContainer) return;
+
+    // Click on simple buttons (no dropdown)
+    filterContainer.addEventListener('click', function(e) {
+        const simpleBtn = e.target.closest('.filter-btn');
+        if (simpleBtn) {
+            const category = simpleBtn.getAttribute('data-filter');
+            setActiveFilter(simpleBtn);
+            filterProjects(category);
+        }
+    });
+
+    // Click on category button WITH dropdown - do nothing (hover handles it)
+    filterContainer.addEventListener('click', function(e) {
+        const dropdownBtn = e.target.closest('.filter-btn-with-dropdown');
+        if (dropdownBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+
+    // Click on dropdown items
+    filterContainer.addEventListener('click', function(e) {
+        const item = e.target.closest('.dropdown-item');
+        if (!item) return;
+
+        const wrapper = item.closest('.filter-dropdown-wrapper');
+        const button = wrapper.querySelector('.filter-btn-with-dropdown');
+        const category = item.getAttribute('data-category');
+        const subcategory = item.getAttribute('data-value');
+
+        // Update visual indicator
+        updateSubcategoryBadge(button, subcategory);
+
+        // Set active and filter
+        setActiveFilter(button);
+        filterProjects(category, subcategory);
+    });
+
+    function setActiveFilter(element) {
+        document.querySelectorAll('.filter-btn, .filter-btn-with-dropdown').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+
+    function updateSubcategoryBadge(button, subcategory) {
+        const badge = button.querySelector('.selected-subcategory-badge');
+        if (subcategory) {
+            badge.textContent = subcategory;
+            badge.style.display = 'inline-block';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    function filterProjects(category, subcategory = '') {
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardSubcategory = card.getAttribute('data-subcategory') ? card.getAttribute('data-subcategory').trim() : '';
+
+            let shouldShow = false;
+
+            if (category === 'all') {
+                shouldShow = true;
+            } else if (category === cardCategory) {
+                if (!subcategory) {
+                    shouldShow = true;
+                } else {
+                    shouldShow = (cardSubcategory === subcategory);
+                }
+            }
+
+            if (shouldShow) {
+                showCard(card);
+            } else {
+                hideCard(card);
+            }
+        });
+    }
 
     function showCard(card) {
         card.style.display = 'flex';
         card.style.opacity = '0';
-        card.style.opacity = '1';
+        setTimeout(() => { card.style.opacity = '1'; }, 10);
     }
 
     function hideCard(card) {
         card.style.opacity = '0';
-        card.style.display = 'none';
+        setTimeout(() => { card.style.display = 'none'; }, 300);
     }
 }
 
@@ -243,6 +494,7 @@ async function loadProjects() {
         const response = await fetch('projects.json');
         projectsData = await response.json();
         renderProjectCards();
+        buildFilterUI();
         initProjectFilters();
         initProjectModal();
     } catch (error) {
@@ -257,11 +509,12 @@ function renderProjectCards() {
 
     projectsGrid.innerHTML = '';
 
-    projectsData.forEach(project => {
+    projectsData.forEach((project, index) => {
         const article = document.createElement('article');
         article.className = 'project-card';
         article.setAttribute('data-category', project.category);
-        article.setAttribute('data-project-id', project.id);
+        article.setAttribute('data-subcategory', project.subcategory || '');
+        article.setAttribute('data-project-id', index);
 
         // Handle special SVG case for project 8
         let imageHTML;
@@ -329,8 +582,8 @@ function initProjectModal() {
         // Don't open if clicking on a link
         if (e.target.tagName === 'A') return;
 
-        const projectId = card.getAttribute('data-project-id');
-        const project = projectsData.find(p => p.id === projectId);
+        const projectIndex = parseInt(card.getAttribute('data-project-id'));
+        const project = projectsData[projectIndex];
 
         if (!project) return;
 
@@ -346,7 +599,7 @@ function initProjectModal() {
         const categoryDisplay = project.category.charAt(0).toUpperCase() + project.category.slice(1);
         document.getElementById('projectModalCategory').textContent = categoryDisplay;
         document.getElementById('projectModalTitle').textContent = project.title;
-        document.getElementById('projectModalLead').textContent = project.lead;
+        document.getElementById('projectModalLead').textContent = project.description;
         document.getElementById('projectModalDescription').textContent = project.fullDescription;
 
         // Add PDF link if exists
