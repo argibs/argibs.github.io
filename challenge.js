@@ -28,6 +28,25 @@ async function loadChallengeData() {
     }
 }
 
+// Generate algae SVG filler for days without images
+// Returns same algae graphic for all days
+function getAlgaeFiller() {
+    const svg = `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="algaeGradient">
+                <stop offset="0%" stop-color="#27ae60" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#16a085" stop-opacity="0.3"/>
+            </radialGradient>
+        </defs>
+        <ellipse cx="200" cy="150" rx="150" ry="100" fill="url(#algaeGradient)"/>
+        <circle cx="180" cy="130" r="15" fill="#27ae60" opacity="0.6"/>
+        <circle cx="220" cy="160" r="12" fill="#27ae60" opacity="0.7"/>
+        <circle cx="200" cy="145" r="18" fill="#2ecc71" opacity="0.8"/>
+        <path d="M150 150 Q200 120 250 150" stroke="#16a085" stroke-width="2" fill="none" opacity="0.5"/>
+    </svg>`;
+    return 'data:image/svg+xml;base64,' + btoa(svg);
+}
+
 function renderCalendar() {
     const grid = document.getElementById('calendarGrid');
     if (!grid) return;
@@ -50,9 +69,13 @@ function createDayCard(dayData) {
     // Build card HTML
     let cardHTML = `<div class="calendar-day-number">${dayData.day}</div>`;
 
-    // Add image if available
+    // Add image - use algae filler if no real image
     if (dayData.image && dayData.image.trim() !== '') {
         cardHTML += `<img src="${escapeHtml(dayData.image)}" alt="Day ${dayData.day}" class="calendar-day-image">`;
+    } else {
+        // Use algae SVG for days without images
+        const algaeDataUrl = getAlgaeFiller();
+        cardHTML += `<img src="${algaeDataUrl}" alt="Day ${dayData.day}" class="calendar-day-image calendar-algae-filler">`;
     }
 
     // Add title if available
@@ -98,8 +121,9 @@ function openChallengeModal(dayData) {
     const modalTitle = document.getElementById('modalTitle');
     const modalDay = document.getElementById('modalDay');
     const modalDescription = document.getElementById('modalDescription');
+    const modalFullDescription = document.getElementById('modalFullDescription');
 
-    // Set image
+    // Set image - use algae filler if no real image
     if (dayData.image && dayData.image.trim() !== '') {
         modalImage.src = dayData.image;
         modalImage.alt = dayData.title || `Day ${dayData.day}`;
@@ -109,9 +133,15 @@ function openChallengeModal(dayData) {
         modalImage.style.cursor = 'pointer';
         modalImage.onclick = () => openChallengeLightbox(dayData.image);
     } else {
-        modalImage.src = '';
-        modalImage.style.display = 'none';
-        modalImage.onclick = null;
+        // Use algae SVG for modal
+        const algaeDataUrl = getAlgaeFiller();
+        modalImage.src = algaeDataUrl;
+        modalImage.alt = `Day ${dayData.day}`;
+        modalImage.style.display = 'block';
+
+        // Make algae filler clickable for lightbox too
+        modalImage.style.cursor = 'pointer';
+        modalImage.onclick = () => openChallengeLightbox(algaeDataUrl);
     }
 
     // Set title
@@ -120,12 +150,25 @@ function openChallengeModal(dayData) {
     // Set day info
     modalDay.textContent = `Day ${dayData.day} - November ${dayData.day}, 2025`;
 
-    // Set description
-    const description = dayData.fullDescription || dayData.description || '';
-    if (description.trim() !== '') {
-        modalDescription.textContent = description;
+    // Set short description (theme)
+    if (dayData.description && dayData.description.trim() !== '') {
+        modalDescription.textContent = dayData.description;
         modalDescription.style.display = 'block';
     } else {
+        modalDescription.style.display = 'none';
+    }
+
+    // Set full description (detailed story)
+    if (dayData.fullDescription && dayData.fullDescription.trim() !== '') {
+        modalFullDescription.textContent = dayData.fullDescription;
+        modalFullDescription.style.display = 'block';
+    } else {
+        modalFullDescription.style.display = 'none';
+    }
+
+    // If neither description exists, show placeholder
+    if ((!dayData.description || dayData.description.trim() === '') &&
+        (!dayData.fullDescription || dayData.fullDescription.trim() === '')) {
         modalDescription.textContent = 'No description available yet.';
         modalDescription.style.display = 'block';
     }

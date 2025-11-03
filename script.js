@@ -59,12 +59,6 @@ function initNavigation() {
             navbar.classList.remove('scrolled');
         }
 
-        // Hide/show navbar on scroll
-        if (currentScroll > lastScroll && currentScroll > 500) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
         lastScroll = currentScroll;
     });
 
@@ -97,6 +91,9 @@ function initSmoothScroll() {
             const targetId = this.getAttribute('href');
 
             if (targetId === '#' || targetId === '') return;
+
+            // Skip preventDefault for view-switching links (e.g., challenge link)
+            if (this.hasAttribute('data-view')) return;
 
             e.preventDefault();
 
@@ -226,7 +223,7 @@ function renderProjectCards() {
         article.setAttribute('data-subcategory', project.subcategory || '');
         article.setAttribute('data-project-id', index);
 
-        // Handle special SVG case for project 8
+        // Handle special SVG case for final project
         let imageHTML;
         if (project.image === 'svg') {
             imageHTML = `
@@ -357,8 +354,7 @@ function initAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
-                // Optional: unobserve after animation
-                // observer.unobserve(entry.target);
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -1004,15 +1000,21 @@ function initViewSwitching() {
     // Switch between views
     function switchView(viewName) {
         if (viewName === 'challenge') {
-            mainView.classList.add('hidden');
-            challengeView.classList.remove('hidden');
+            // Scroll to top FIRST (instant) before showing view
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Wait for scroll to settle before showing view
+            setTimeout(() => {
+                mainView.classList.add('hidden');
+                challengeView.classList.remove('hidden');
+            }, 10);
         } else {
             mainView.classList.remove('hidden');
             challengeView.classList.add('hidden');
-        }
 
-        // Scroll to top when switching views
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Scroll to top when switching to main view
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Update active nav state
         updateActiveNavLink();

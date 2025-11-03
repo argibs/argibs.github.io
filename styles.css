@@ -1636,7 +1636,7 @@ button:focus {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 5.5rem 0 0 0;
     background: transparent;
     overflow: hidden;
 }
@@ -1645,7 +1645,7 @@ button:focus {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 5.5rem;
+    padding-top: 0;
     padding-bottom: 1.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -1772,6 +1772,12 @@ button:focus {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.calendar-algae-filler {
+    background: linear-gradient(135deg, #d8e8d5 0%, #c5d9c0 100%);
+    padding: 1.6rem;
+    object-fit: contain;
 }
 
 .calendar-day-title {
@@ -1919,6 +1925,14 @@ button:focus {
     color: var(--text-secondary);
 }
 
+.challenge-modal .modal-full-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    opacity: 0.9;
+}
+
 /* Responsive Calendar Styles */
 @media (max-width: 1024px) {
     .calendar-day-title {
@@ -1938,10 +1952,11 @@ button:focus {
         height: auto;
         min-height: 100vh;
         overflow: auto;
+        padding: 6rem 0 0 0;
     }
 
     .challenge-wrapper {
-        padding-top: 6rem;
+        padding-top: 0;
         padding-bottom: 3rem;
         padding-left: 1rem;
         padding-right: 1rem;
