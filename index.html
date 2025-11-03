@@ -23,15 +23,18 @@
                 <span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#hero" class="nav-link view-link" data-view="main">Home</a></li>
+                <li><a href="#projects" class="nav-link view-link" data-view="main">Projects</a></li>
+                <li><a href="#challenge" class="nav-link view-link" data-view="challenge">30 Day Map Challenge 2025</a></li>
                 <li><a href="assets/resume/Gibson-Ashton-Resume.pdf" target="_blank" class="nav-link">Resume</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Unified Introduction Section (Hero + About + Skills + Contact Combined) -->
-    <section id="hero" class="unified-hero">
+    <!-- Main Portfolio View -->
+    <div class="main-view">
+        <!-- Unified Introduction Section (Hero + About + Skills + Contact Combined) -->
+        <section id="hero" class="unified-hero">
         <div class="unified-hero-content">
 
             <!-- Header: Name & Identity with Compact Skills/Connect -->
@@ -116,6 +119,25 @@
             </div>
         </div>
     </section>
+    </div><!-- End Main Portfolio View -->
+
+    <!-- Challenge Calendar Section -->
+    <section id="challenge" class="challenge-section challenge-view hidden">
+        <div class="challenge-wrapper">
+            <div class="challenge-header">
+                <h1 class="challenge-title">30 Day Map Challenge 2025</h1>
+                <p class="challenge-subtitle">November 2025 · Daily Mapping Challenge</p>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-container">
+                <!-- Calendar Days Grid -->
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Dynamically populated via challenge.js -->
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -153,6 +175,33 @@
         </div>
     </div>
 
+    <!-- Challenge Modal -->
+    <div id="challengeModal" class="challenge-modal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle" class="modal-title"></h2>
+                    <p id="modalDay" class="modal-day"></p>
+                    <p id="modalDescription" class="modal-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Challenge Lightbox -->
+    <div class="lightbox" id="challengeLightbox">
+        <button class="lightbox-close" id="challengeLightboxClose" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="challengeLightboxImage">
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="challenge.js"></script>
 </body>
 </html>

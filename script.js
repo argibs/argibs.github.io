@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initNavigation();
     initScrollProgress();
+    initViewSwitching();
     loadProjects();
     initSmoothScroll();
     initAnimations();
@@ -967,4 +968,88 @@ function escapeHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+/* --------- View Switching (Single Page App) --------- */
+function initViewSwitching() {
+    const mainView = document.querySelector('.main-view');
+    const challengeView = document.querySelector('.challenge-view');
+
+    if (!mainView || !challengeView) return;
+
+    // Handle hash changes
+    function handleHashChange() {
+        const hash = window.location.hash;
+
+        if (hash === '#challenge') {
+            switchView('challenge');
+        } else {
+            // Any other hash (including #hero, #projects, or no hash) shows main view
+            switchView('main');
+
+            // If there's a hash for main view sections, scroll to it
+            if (hash && hash !== '#challenge') {
+                setTimeout(() => {
+                    const target = document.querySelector(hash);
+                    if (target) {
+                        const navHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                        const targetPosition = target.offsetTop - navHeight - 20;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        }
+    }
+
+    // Switch between views
+    function switchView(viewName) {
+        if (viewName === 'challenge') {
+            mainView.classList.add('hidden');
+            challengeView.classList.remove('hidden');
+        } else {
+            mainView.classList.remove('hidden');
+            challengeView.classList.add('hidden');
+        }
+
+        // Scroll to top when switching views
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Update active nav state
+        updateActiveNavLink();
+
+        // Close mobile menu if open
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+        }
+    }
+
+    // Update active nav link based on current view
+    function updateActiveNavLink() {
+        const hash = window.location.hash;
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+
+            if (hash === '#challenge' && href === '#challenge') {
+                link.classList.add('active');
+            } else if (hash !== '#challenge' && (href === '#hero' || href === '#projects')) {
+                // Keep active state for main view links when in main view
+                if (href === hash) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Handle initial page load
+    handleHashChange();
 }

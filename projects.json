@@ -62,6 +62,7 @@
     "description": "Exploring bathymetry data visualization by testing color palettes and cartographic styles.",
     "image": "assets/images/lake_michigan.png",
     "fullDescription": " "
+  },
   {
     "category": "personal",
     "subcategory": "QGIS",
@@ -69,6 +70,7 @@
     "description": "I continue the bathymetry series with Lake Superior, showcasing different color palettes and design",
     "image": "assets/images/lake_superior.jpg",
     "fullDescription": " "
+  },
   {
     "category": "personal",
     "subcategory": "QGIS",
@@ -85,20 +87,20 @@
     "image": "assets/images/ums.png",
     "fullDescription": " "
   },
-   {
+  {
     "category": "personal",
     "subcategory": "QGIS",
     "title": "Douglas Lake Bathymetry",
     "description": "Visualization of Duglas Lake's depth and features.",
     "image": "assets/images/douglaslake_newcolor.JPEG",
-    "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth.",
+    "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
   },
-   {
+  {
     "category": "personal",
     "subcategory": "30 Day Map Challenge",
     "title": "Shipwreck Locations in Lake Superior",
     "description": "Day one of the 2025 30 Day Map Challenge: theme is Points.",
     "image": "assets/images/douglaslake_newcolor.JPEG",
-    "fullDescription": "I was inspired by this being the 50th year since the SS Edmund Fitzgerald was lost. November is a particularly dangerous month for ships on the Great Lakes.",
+    "fullDescription": "I was inspired by this being the 50th year since the SS Edmund Fitzgerald was lost. November is a particularly dangerous month for ships on the Great Lakes."
   }
 ]
