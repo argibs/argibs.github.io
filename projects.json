@@ -91,7 +91,7 @@
     "category": "personal",
     "subcategory": "QGIS",
     "title": "Douglas Lake Bathymetry",
-    "description": "Visualization of Duglas Lake's depth and features.",
+    "description": "Visualization of Douglas Lake's depth and features.",
     "image": "assets/images/douglaslake_newcolor.JPEG",
     "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
   }
