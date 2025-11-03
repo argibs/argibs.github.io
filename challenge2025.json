@@ -3,15 +3,15 @@
     "day": 1,
     "title": "Shipwreck Locations in Lake Superior",
     "description": "Day one of the 2025 30 Day Map Challenge: theme is Points.",
-    "image": "assets/images/douglaslake_newcolor.JPEG",
+    "image": "assets/images/challenge/day1.png",
     "fullDescription": "I was inspired by this being the 50th year since the SS Edmund Fitzgerald was lost. November is a particularly dangerous month for ships on the Great Lakes."
   },
   {
     "day": 2,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Relative Elevation Model of the Grand River",
+    "description": "Day 2 of the Map Challenge, and the theme is Lines! ",
+    "image": "assets/images/Grand River with labels.png",
+    "fullDescription": "This map was inspired by Wanmei Liang and I used this tutorial from Daniel Coe: https://dancoecarto.com/creating-rems-in-qgis-the-idw-method. The data is from USGS 3DEP Lidar Explorer. I used the DEM of a section of the Grand River near Grand Ledge, MI. Check out my Projects page to see the alternate color ramp!"
   },
   {
     "day": 3,
