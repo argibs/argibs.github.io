@@ -94,5 +94,13 @@
     "description": "Visualization of Douglas Lake's depth and features.",
     "image": "assets/images/douglaslake_newcolor.JPEG",
     "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
+  },
+  {
+    "category": "personal",
+    "subcategory": "QGIS",
+    "title": "30 Day Map Challenge- Day 2",
+    "description": "Alternate visualization for my "Line" themed map. Check out my other projects from this challenge on the "Map Challenge" page!",
+    "image": "assets/images/GrandRiverInferno.png",
+    "fullDescription": "This is a map of a section of the Grand River, near Grand Ledge, MI."
   }
 ]
