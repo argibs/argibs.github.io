@@ -22,10 +22,10 @@
   },
   {
     "day": 4,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Buffer Distance from my Favorite Ice Cream",
+    "description": "Day 4: My Data",
+    "image": "assets/11-4-25.png",
+    "fullDescription": "I webscraped the locations and parsed them with regular expressions to prepare for geocoding. This was created in ArcGIS Pro."
   },
   {
     "day": 5,
