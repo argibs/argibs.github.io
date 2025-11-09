@@ -29,17 +29,17 @@
   },
   {
     "day": 5,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Alum Cave Trail Map",
+    "description": "Day 5: Earth",
+    "image": "assets/images/EarthLayout.png",
+    "fullDescription": "This is a map of a trail I hiked with friends during spring break. The mountains were so beautiful, and it felt very connected to the Earth."
   },
   {
     "day": 6,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Inverse Bathymetry",
+    "description": "Day 6: Dimensions",
+    "image": "assets/images/DimensionsLayout.png",
+    "fullDescription": "Here, I continued my Great Lakes Bathymetry with Lake Erie. I decided to symbolize it to seem like the deeper areas were popping out instead of receding, to show how light and shadow manipulate how we see dimension in flat layouts."
   },
   {
     "day": 7,
