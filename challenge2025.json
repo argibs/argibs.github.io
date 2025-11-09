@@ -43,17 +43,17 @@
   },
   {
     "day": 7,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Change in Bus Ridership Volume in Chicago",
+    "description": "Day 7: Accessibility ",
+    "image": "assets/images/AccessibilityLayout.png",
+    "fullDescription": "This map shows the difference between 2016 ridership volume and 2025 ridership for available data. Although bus use has decreased, likely due to the rise in remote work, they are still serving millions each year."
   },
   {
     "day": 8,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Comparing Bus Routes in Chicago",
+    "description": "Day 8: Urban",
+    "image": "assets/images/ChicagoBusGIF.gif",
+    "fullDescription": "This pair of maps shows not only how the volume of riders has decreased, but also the demand for specific routes has changed significantly."
   },
   {
     "day": 9,
