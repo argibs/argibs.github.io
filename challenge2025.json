@@ -57,10 +57,10 @@
   },
   {
     "day": 9,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Map of Michigan",
+    "description": "Day 9: Analog",
+    "image": "assets/images/handmap.jpg",
+    "fullDescription": "This map is familiar to Michiganders, and succintly answers the question 'Where are you from'?"
   },
   {
     "day": 10,
