@@ -3,92 +3,92 @@
     "day": 1,
     "title": "Shipwreck Locations in Lake Superior",
     "description": "Day one of the 2025 30 Day Map Challenge: theme is Points.",
-    "image": "assets/images/Layout.jpg",
+    "image": "assets/images/challenge/Layout.jpg",
     "fullDescription": "I was inspired by this being the 50th year since the SS Edmund Fitzgerald was lost. November is a particularly dangerous month for ships on the Great Lakes."
   },
   {
     "day": 2,
     "title": "Relative Elevation Model of the Grand River",
     "description": "Day 2 of the Map Challenge, and the theme is Lines! ",
-    "image": "assets/images/Grand River with labels.png",
+    "image": "assets/images/challenge/Grand River with labels.png",
     "fullDescription": "This map was inspired by Wanmei Liang and I used this tutorial from Daniel Coe: https://dancoecarto.com/creating-rems-in-qgis-the-idw-method. The data is from USGS 3DEP Lidar Explorer. I used the DEM of a section of the Grand River near Grand Ledge, MI. Check out my Projects page to see the alternate color ramp!"
   },
   {
     "day": 3,
     "title": "Ann Arbor Parks",
     "description": "Day 3: the theme is Polygons",
-    "image": "assets/images/PolygonLayout.png",
+    "image": "assets/images/challenge/PolygonLayout.png",
     "fullDescription": "This map uses a picture fill to enhance the texture and give it a 'crafty' feel. I used stock images of felt from Adobe Stock, and a tutorial by John Nelson."
   },
   {
     "day": 4,
     "title": "Buffer Distance from my Favorite Ice Cream",
     "description": "Day 4: My Data",
-    "image": "assets/images/11-4-25-Layout.png",
+    "image": "assets/images/challenge/11-4-25-Layout.png",
     "fullDescription": "I webscraped the locations and parsed them with regular expressions to prepare for geocoding. This was created in ArcGIS Pro."
   },
   {
     "day": 5,
     "title": "Alum Cave Trail Map",
     "description": "Day 5: Earth",
-    "image": "assets/images/EarthLayout.png",
+    "image": "assets/images/challenge/EarthLayout.png",
     "fullDescription": "This is a map of a trail I hiked with friends during spring break. The mountains were so beautiful, and it felt very connected to the Earth."
   },
   {
     "day": 6,
     "title": "Inverse Bathymetry",
     "description": "Day 6: Dimensions",
-    "image": "assets/images/DimensionsLayout.png",
+    "image": "assets/images/challenge/DimensionsLayout.png",
     "fullDescription": "Here, I continued my Great Lakes Bathymetry with Lake Erie. I decided to symbolize it to seem like the deeper areas were popping out instead of receding, to show how light and shadow manipulate how we see dimension in flat layouts."
   },
   {
     "day": 7,
     "title": "Change in Bus Ridership Volume in Chicago",
     "description": "Day 7: Accessibility ",
-    "image": "assets/images/AccessibilityLayout.png",
+    "image": "assets/images/challenge/AccessibilityLayout.png",
     "fullDescription": "This map shows the difference between 2016 ridership volume and 2025 ridership for available data. Although bus use has decreased, likely due to the rise in remote work, they are still serving millions each year."
   },
   {
     "day": 8,
     "title": "Comparing Bus Routes in Chicago",
     "description": "Day 8: Urban",
-    "image": "assets/images/ChicagoBusGIF.gif",
+    "image": "assets/images/challenge/ChicagoBusGIF.gif",
     "fullDescription": "This pair of maps shows not only how the volume of riders has decreased, but also the demand for specific routes has changed significantly."
   },
   {
     "day": 9,
     "title": "Map of Michigan",
     "description": "Day 9: Analog",
-    "image": "assets/images/handmap.jpg",
+    "image": "assets/images/challenge/handmap.jpg",
     "fullDescription": "This map is familiar to Michiganders, and succintly answers the question 'Where are you from'?"
   },
   {
     "day": 10,
     "title": "Wind Speed and Direction in SE Michigan",
     "description": "Day 10: Wind",
-    "image": "assets/images/AirLayout.png",
+    "image": "assets/images/challenge/AirLayout.png",
     "fullDescription": "I used EGLE's daily updated Air Monitoring dataset, but chose to visualize the wind characteristics instead of the air pollution measurements. I symbolized the stations as arrows, pointing in the direction of the wind, and with graduated sizes based on wind strength in knots."
   },
   {
     "day": 11,
     "title": "Stream Order across Michigan",
     "description": "Day 11: Minimal Map",
-    "image": "assets/images/MinimalLayout.png",
+    "image": "assets/images/challenge/MinimalLayout.png",
     "fullDescription": "Michigan's streams are visualized by stream order: the number of streams which flow into it. I love how with minimal layers and symbology you can still clearly see the outline of Michigan!"
   },
   {
     "day": 12,
     "title": "Future Hologram Map",
     "description": "Day 12: Map from 2125",
-    "image": "assets/images/2125Layout.png",
+    "image": "assets/images/challenge/2125Layout.png",
     "fullDescription": "I went kind of abstract here; in general I'm imagining that maps in the future will be displayed in 3D via hologram. Although, I wonder what that would mean for the future of map projections... I did my best to capture a 3D hologram-ish look using strategic shading and that classic black-green color combo."
   },
   {
     "day": 13,
-    "title": "test",
-    "description": "test1",
-    "image": "assets/images/challenge/day1.png",
-    "fullDescription": "test12"
+    "title": "Check back soon ...",
+    "description": "",
+    "image": "",
+    "fullDescription": ""
   },
   {
     "day": 14,

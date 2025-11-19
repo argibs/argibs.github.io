@@ -1016,13 +1016,14 @@ p {
     position: relative;
     background: white;
     border-radius: 13px;
-    max-width: 1760px;
-    width: 100%;
-    max-height: none;
-    overflow: visible;
+    width: 80vw;
+    height: 70vh;
+    overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,0.4);
     animation: slideUp 0.4s ease;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes slideUp {
@@ -1038,20 +1039,20 @@ p {
 
 .project-modal-close {
     position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
+    top: 0.8rem;
+    right: 0.8rem;
     background: var(--accent-color);
     border: none;
     color: white;
-    font-size: 3.2rem;
+    font-size: 2rem;
     cursor: pointer;
     padding: 0;
     line-height: 0;
     border-radius: 50%;
     transition: var(--transition);
     z-index: 2;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1066,6 +1067,10 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
 }
 
 .project-modal-image-section {
@@ -1073,13 +1078,16 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4.8rem;
-    min-height: 640px;
+    padding: 2rem;
+    overflow: hidden;
 }
 
 .project-modal-image-section img {
     max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
+    object-fit: contain;
     border-radius: 6px;
     box-shadow: var(--shadow-lg);
     cursor: pointer;
@@ -1092,34 +1100,36 @@ p {
 }
 
 .project-modal-info-section {
-    padding: 4.8rem;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    justify-content: center;
 }
 
 .project-modal-category {
     display: inline-block;
     background: var(--primary-color);
     color: white;
-    padding: 0.64rem 1.6rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 16px;
-    font-size: 1.36rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     width: fit-content;
 }
 
 .project-modal-title {
-    font-size: 3.2rem;
+    font-size: 2.5rem;
     color: var(--text-primary);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .project-modal-lead {
-    font-size: 1.84rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: var(--text-primary);
     line-height: 1.6;
@@ -1127,16 +1137,16 @@ p {
 }
 
 .project-modal-description {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
     line-height: 1.7;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .project-modal-actions {
-    margin-top: 3.2rem;
+    margin-top: 2rem;
     display: flex;
-    gap: 1.6rem;
+    gap: 1rem;
 }
 
 /* HAB Visual */
@@ -1391,17 +1401,21 @@ button:focus {
         gap: 1.2rem;
     }
 
+    .project-modal-content {
+        width: 85vw;
+        height: 75vh;
+    }
+
     .project-modal-body {
         grid-template-columns: 1fr;
     }
 
     .project-modal-image-section {
-        min-height: 480px;
-        padding: 3.2rem;
+        padding: 1.5rem;
     }
 
     .project-modal-info-section {
-        padding: 3.2rem;
+        padding: 1.5rem;
     }
 
     /* Unified Hero: Tablet */
@@ -1559,27 +1573,44 @@ button:focus {
     }
 
     .project-modal {
-        padding: 1.6rem;
+        padding: 0.5rem;
     }
 
     .project-modal-content {
-        max-height: none;
+        width: 95vw;
+        height: 80vh;
     }
 
     .project-modal-close {
-        top: 0.8rem;
-        right: 0.8rem;
-        width: 64px;
-        height: 64px;
-        font-size: 2.4rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .project-modal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .project-modal-image-section {
+        padding: 1rem;
+    }
+
+    .project-modal-info-section {
+        padding: 1rem;
     }
 
     .project-modal-title {
-        font-size: 2.4rem;
+        font-size: 1.5rem;
     }
 
     .project-modal-lead {
-        font-size: 1.6rem;
+        font-size: 1rem;
+    }
+
+    .project-modal-description {
+        font-size: 0.9rem;
     }
 }
 
@@ -1829,9 +1860,8 @@ button:focus {
 
 .challenge-modal .modal-content {
     position: relative;
-    max-width: 1760px;
-    width: 90%;
-    max-height: none;
+    width: 80vw;
+    height: 70vh;
     margin: auto;
     background: white;
     border-radius: 16px;
@@ -1839,6 +1869,8 @@ button:focus {
     z-index: 10001;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     animation: slideUp 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes slideUp {
@@ -1854,15 +1886,15 @@ button:focus {
 
 .challenge-modal .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.8rem;
+    right: 0.8rem;
     background: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    font-size: 3.2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
     line-height: 0;
     cursor: pointer;
     z-index: 10002;
@@ -1881,21 +1913,27 @@ button:focus {
 .challenge-modal .modal-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4.8rem;
-    padding: 4.8rem;
-    max-height: none;
-    overflow: visible;
+    gap: 2.5rem;
+    padding: 2.5rem;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
 }
 
 .modal-image-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .challenge-modal .modal-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
+    object-fit: contain;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
 }
@@ -1904,33 +1942,34 @@ button:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
 .challenge-modal .modal-title {
-    font-size: 3.2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .challenge-modal .modal-day {
-    font-size: 1.84rem;
+    font-size: 1.4rem;
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .challenge-modal .modal-description {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     line-height: 1.7;
     color: var(--text-secondary);
 }
 
 .challenge-modal .modal-full-description {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     line-height: 1.7;
     color: var(--text-secondary);
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     opacity: 0.9;
 }
 
@@ -1944,6 +1983,16 @@ button:focus {
     .challenge-wrapper {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+    }
+
+    .challenge-modal .modal-content {
+        width: 85vw;
+        height: 75vh;
+    }
+
+    .challenge-modal .modal-body {
+        padding: 1.5rem;
+        gap: 1.5rem;
     }
 }
 
@@ -1989,14 +2038,34 @@ button:focus {
         padding: 1rem 0.5rem 0.5rem;
     }
 
+    .challenge-modal .modal-content {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .challenge-modal .modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
     .challenge-modal .modal-body {
         grid-template-columns: 1fr;
-        gap: 4.8rem;
-        padding: 4.8rem;
+        gap: 1rem;
+        padding: 1rem;
     }
 
     .challenge-modal .modal-title {
-        font-size: 2.4rem;
+        font-size: 1.5rem;
+    }
+
+    .challenge-modal .modal-day {
+        font-size: 1rem;
+    }
+
+    .challenge-modal .modal-description,
+    .challenge-modal .modal-full-description {
+        font-size: 0.9rem;
     }
 }
 
