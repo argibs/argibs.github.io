@@ -66,22 +66,22 @@
     "day": 10,
     "title": "Wind Speed and Direction in SE Michigan",
     "description": "Day 10: Wind",
-    "image": "",
+    "image": "assets/images/AirLayout.png",
     "fullDescription": "I used EGLE's daily updated Air Monitoring dataset, but chose to visualize the wind characteristics instead of the air pollution measurements. I symbolized the stations as arrows, pointing in the direction of the wind, and with graduated sizes based on wind strength in knots."
   },
   {
     "day": 11,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Stream Order across Michigan",
+    "description": "Day 11: Minimal Map",
+    "image": "assets/images/MinimalLayout.png",
+    "fullDescription": "Michigan's streams are visualized by stream order: the number of streams which flow into it. I love how with minimal layers and symbology you can still clearly see the outline of Michigan!"
   },
   {
     "day": 12,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Future Hologram Map",
+    "description": "Day 12: Map from 2125",
+    "image": "assets/images/2125Layout.png",
+    "fullDescription": "I went kind of abstract here; in general I'm imagining that maps in the future will be displayed in 3D via hologram. Although, I wonder what that would mean for the future of map projections... I did my best to capture a 3D hologram-ish look using strategic shading and that classic black-green color combo."
   },
   {
     "day": 13,
