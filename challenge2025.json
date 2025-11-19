@@ -18,7 +18,7 @@
     "title": "Ann Arbor Parks",
     "description": "Day 3: the theme is Polygons",
     "image": "assets/images/PolygonLayout.png",
-    "fullDescription": "This map uses a picture fill to enhance the texture and give it a 'crafty' feel. I used stock images of felt from Adobe Stock, and a turotial by John Nelson."
+    "fullDescription": "This map uses a picture fill to enhance the texture and give it a 'crafty' feel. I used stock images of felt from Adobe Stock, and a tutorial by John Nelson."
   },
   {
     "day": 4,
@@ -64,10 +64,10 @@
   },
   {
     "day": 10,
-    "title": "Check back soon ...",
-    "description": "",
+    "title": "Wind Speed and Direction in SE Michigan",
+    "description": "Day 10: Wind",
     "image": "",
-    "fullDescription": ""
+    "fullDescription": "I used EGLE's daily updated Air Monitoring dataset, but chose to visualize the wind characteristics instead of the air pollution measurements. I symbolized the stations as arrows, pointing in the direction of the wind, and with graduated sizes based on wind strength in knots."
   },
   {
     "day": 11,
