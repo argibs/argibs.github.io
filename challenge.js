@@ -148,7 +148,7 @@ function openChallengeModal(dayData) {
     modalTitle.textContent = dayData.title || `Day ${dayData.day}`;
 
     // Set day info
-    modalDay.textContent = `Day ${dayData.day} - November ${dayData.day}, 2025`;
+    modalDay.textContent = `November ${dayData.day}, 2025`;
 
     // Set short description (theme)
     if (dayData.description && dayData.description.trim() !== '') {
