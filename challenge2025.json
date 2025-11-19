@@ -85,10 +85,10 @@
   },
   {
     "day": 13,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "test",
+    "description": "test1",
+    "image": "assets/images/challenge/day1.png",
+    "fullDescription": "test12"
   },
   {
     "day": 14,
