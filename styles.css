@@ -1078,6 +1078,7 @@ p {
     overflow: hidden;
     min-height: 0;
     height: 100%;
+    position: relative;
 }
 
 .project-modal-image-section,
@@ -1114,8 +1115,63 @@ p {
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Scroll indicator gradient - shows there's more content below */
+.project-modal-info-section::after,
+.challenge-modal-info-section::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show gradient when scrolled (controlled via JS or CSS) */
+.project-modal-info-section:not(:hover)::after,
+.challenge-modal-info-section:not(:hover)::after {
+    opacity: 1;
+}
+
+/* Custom scrollbar for modal info sections */
+.project-modal-info-section::-webkit-scrollbar,
+.challenge-modal-info-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.project-modal-info-section::-webkit-scrollbar-track,
+.challenge-modal-info-section::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+.project-modal-info-section::-webkit-scrollbar-thumb,
+.challenge-modal-info-section::-webkit-scrollbar-thumb {
+    background: rgba(61,139,111,0.4);
+    border-radius: 4px;
+}
+
+.project-modal-info-section::-webkit-scrollbar-thumb:hover,
+.challenge-modal-info-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(61,139,111,0.6);
+}
+
+/* Firefox scrollbar styling */
+.project-modal-info-section,
+.challenge-modal-info-section {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(61,139,111,0.4) rgba(0,0,0,0.05);
 }
 
 .project-modal-title,
@@ -1436,7 +1492,8 @@ button:focus {
     .project-modal-content,
     .challenge-modal-content {
         width: 85vw;
-        height: 75vh;
+        height: auto;
+        max-height: 80vh;
     }
 
     .project-modal-body,
@@ -1479,7 +1536,7 @@ button:focus {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 56px;
+        top: 100%;
         flex-direction: column;
         background-color: var(--bg-light);
         width: 100%;
@@ -1487,6 +1544,7 @@ button:focus {
         transition: 0.3s;
         box-shadow: var(--shadow-md);
         padding: 1.6rem 0;
+        margin-top: 0;
     }
 
     .nav-menu.active {
@@ -1631,32 +1689,55 @@ button:focus {
     .project-modal-body,
     .challenge-modal-body {
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .project-modal-image-section,
     .challenge-modal-image-section {
         padding: 1rem;
+        max-height: 50vh;
+        min-height: 200px;
     }
 
     .project-modal-info-section,
     .challenge-modal-info-section {
         padding: 1rem;
+        min-height: auto;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    /* Remove scroll indicator gradient on mobile since parent scrolls */
+    .project-modal-info-section::after,
+    .challenge-modal-info-section::after {
+        display: none;
     }
 
     .project-modal-title,
     .challenge-modal-title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
     }
 
     .project-modal-lead,
     .challenge-modal-day {
-        font-size: 1rem;
+        font-size: 0.875rem;
+        margin-bottom: 0.6rem;
     }
 
     .project-modal-description,
     .challenge-modal-description,
     .challenge-modal-full-description {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .project-modal-category {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.8rem;
     }
 }
 
@@ -1702,6 +1783,59 @@ button:focus {
 
     .contact-icon-large {
         font-size: 2rem;
+    }
+
+    /* Modal improvements for small screens */
+    .project-modal-content,
+    .challenge-modal-content {
+        width: 98vw;
+        height: auto;
+        max-height: 90vh;
+    }
+
+    .project-modal-body,
+    .challenge-modal-body {
+        grid-template-rows: auto auto;
+        height: auto;
+        max-height: calc(90vh - 60px); /* Account for close button */
+    }
+
+    .project-modal-info-section,
+    .challenge-modal-info-section {
+        padding: 0.75rem;
+        height: auto;
+        min-height: auto;
+    }
+
+    .project-modal-title,
+    .challenge-modal-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-modal-lead,
+    .challenge-modal-day {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-modal-description,
+    .challenge-modal-description,
+    .challenge-modal-full-description {
+        font-size: 0.75rem;
+        line-height: 1.55;
+    }
+
+    .project-modal-category {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-modal-image-section,
+    .challenge-modal-image-section {
+        padding: 0.75rem;
+        max-height: 45vh;
     }
 }
 
