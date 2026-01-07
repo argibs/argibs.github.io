@@ -85,24 +85,24 @@
   },
   {
     "day": 13,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "10-Minute Map",
+    "description": "Day 13: 10-Minute Map",
+    "image": "assets/images/TenMinLayout.png",
+    "fullDescription": "I'd love to say that this map took me exactly 10 minutes, but that is not the truth. Regardless, I consider it a win that I made this (including formatting labels) in under 1 hour."
   },
   {
     "day": 14,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Open Street Map Data",
+    "description": "Day 14: Open Street Map data",
+    "image": "assets/images/OSMLayout.png",
+    "fullDescription": "Using data from Open Street Map was new for me! I'm surprised at how easy it was to upload the GeoJSON into ArcGIS Pro, and the road categorization made it simple to apply this hierarchical symbology."
   },
   {
     "day": 15,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Heat Map",
+    "description": "Day 15: Fire",
+    "image": "assets/images/HeatMap.jpg",
+    "fullDescription": "I extrapolated this theme: using Heat (fire) as the symbology instead of the subject. This project was also born out of the desire to use Daniel Huffman's amazing boundary datasets (from projectlinework.org)."
   },
   {
     "day": 16,
@@ -120,10 +120,10 @@
   },
   {
     "day": 18,
-    "title": "Check back soon ...",
-    "description": "",
-    "image": "",
-    "fullDescription": ""
+    "title": "Fantasy Adventure Map",
+    "description": "Day 18: Out of this World",
+    "image": "assets/images/Layout5dnd.png",
+    "fullDescription": "This map takes Seattle, WA, flips it, floods it, and recolors it to illustrate the fantasy setting of my partner's Dungeons and Dragons campaign. I had a lot of fun recoloring this DEM to highlight the variation in the landscape, while imagining it as lush and green. "
   },
   {
     "day": 19,
