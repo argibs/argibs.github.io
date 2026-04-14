@@ -1,0 +1,74 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: #f5f3ed;
+    overflow-x: hidden;
+    -ms-overflow-style: none; /* IE/Edge */
+    position: relative;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: clamp(2rem, 4.8vw, 3.2rem); }
+h2 { font-size: clamp(1.44rem, 3.2vw, 2.4rem); }
+h3 { font-size: clamp(1.04rem, 2.4vw, 1.6rem); }
+h4 { font-size: clamp(0.88rem, 2vw, 1.2rem); }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .hero-buttons,
+    .project-filters,
+    .footer,
+    .lightbox,
+    .scroll-progress {
+        display: none;
+    }
+
+    .split-section {
+        min-height: auto;
+        page-break-inside: avoid;
+    }
+
+    .split-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    body {
+        background: white;
+    }
+}
+
+.hidden {
+    display: none !important;
+}

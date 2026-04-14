@@ -1,0 +1,546 @@
+/* BaseModal - shared modal primitive.
+   Ported from styles.css `.project-modal*`, `.challenge-modal*`, `.lightbox*`. */
+
+/* ---------- Shared overlay (backdrop) ---------- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem;
+    background: rgba(45, 40, 32, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: baseModalFadeIn 0.3s ease;
+}
+
+@keyframes baseModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes baseModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes baseModalZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes baseModalFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes baseModalSlideDown {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(30px); }
+}
+
+@keyframes baseModalZoomOut {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.9); }
+}
+
+.overlay.closing {
+    animation: baseModalFadeOut 0.28s ease forwards;
+}
+
+.overlay.closing .dialog {
+    animation: baseModalSlideDown 0.28s ease forwards;
+}
+
+.overlay.lightbox.closing .dialog {
+    animation: baseModalZoomOut 0.26s ease forwards;
+}
+
+/* ---------- Shared dialog (inner container) ---------- */
+.dialog {
+    position: relative;
+    background: white;
+    border-radius: 13px;
+    width: 80vw;
+    height: 70vh;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg, 0 24px 80px rgba(0, 0, 0, 0.4));
+    animation: baseModalSlideUp 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* ---------- Close button ---------- */
+.close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 0;
+    border-radius: 50%;
+    transition: var(--transition, all 0.3s ease);
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close:hover {
+    background: #a67c52;
+    transform: rotate(90deg);
+}
+
+/* ---------- Structural slots ---------- */
+.header {
+    padding: 1.5rem 2.5rem 0;
+    color: var(--text-primary);
+}
+
+.header h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 2rem 2.5rem;
+    color: var(--text-primary);
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.body p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    padding: 1rem 2.5rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Custom scrollbar on the body (ported from .project-modal-info-section) */
+.body::-webkit-scrollbar {
+    width: 8px;
+}
+.body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+.body::-webkit-scrollbar-thumb {
+    background: rgba(61, 139, 111, 0.4);
+    border-radius: 4px;
+}
+.body::-webkit-scrollbar-thumb:hover {
+    background: rgba(61, 139, 111, 0.6);
+}
+.body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(61, 139, 111, 0.4) rgba(0, 0, 0, 0.05);
+}
+
+/* ======================================================
+   Project variant  (ported from .project-modal*)
+   ====================================================== */
+.overlay.project {
+    /* shared overlay already covers this; kept for specificity */
+}
+
+.project .dialog {
+    background: white;
+    width: min(1100px, 90vw);
+    height: auto;
+    max-height: 85vh;
+}
+
+.project .header {
+    padding: 2.5rem 2.5rem 0;
+}
+
+.project .header h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* Category pill (maps from .project-modal-category) */
+.project .header .category,
+.project .body .category {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.project .body {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+}
+
+.project .body img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    margin: 0 auto 1.5rem;
+}
+
+.project .body img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.project .body .lead {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
+.project .body p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.project .footer {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* ======================================================
+   Challenge variant  (ported from .challenge-modal*)
+   ====================================================== */
+.overlay.challenge {
+    /* shared overlay already covers it */
+}
+
+.challenge .dialog {
+    background: white;
+    width: min(1100px, 90vw);
+    height: auto;
+    max-height: 85vh;
+}
+
+.challenge .header {
+    padding: 2.5rem 2.5rem 0;
+}
+
+.challenge .header h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.challenge .body {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+}
+
+.challenge .body img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    margin: 0 auto 1.5rem;
+}
+
+.challenge .body img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.challenge .body .day {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
+.challenge .body p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.challenge .body .full-description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ======================================================
+   Lightbox variant  (ported from .lightbox*)
+   ====================================================== */
+.overlay.lightbox {
+    background: rgba(45, 40, 32, 0.95);
+    z-index: 10002;
+    padding: 1.6rem;
+}
+
+.lightbox .dialog {
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    overflow: visible;
+    animation: baseModalZoomIn 0.3s ease;
+}
+
+.lightbox .close {
+    top: -50px;
+    right: 0;
+    background: transparent;
+    color: white;
+    font-size: 3rem;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    line-height: 1;
+}
+
+.lightbox .close:hover {
+    background: transparent;
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+.lightbox .body {
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+}
+
+.lightbox .body img {
+    max-width: 100%;
+    max-height: 95vh;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox .header,
+.lightbox .footer {
+    display: none;
+}
+
+/* ======================================================
+   Responsive
+   ====================================================== */
+@media (max-width: 1024px) {
+    .project .dialog,
+    .challenge .dialog {
+        width: 85vw;
+        height: auto;
+        max-height: 80vh;
+    }
+
+    .project .body,
+    .challenge .body {
+        padding: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        padding: 0.5rem;
+    }
+
+    .dialog {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .project .dialog,
+    .challenge .dialog {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .header,
+    .project .header,
+    .challenge .header {
+        padding: 1rem 1rem 0;
+    }
+
+    .header h2,
+    .project .header h2,
+    .challenge .header h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .body,
+    .project .body,
+    .challenge .body {
+        padding: 1rem;
+    }
+
+    .project .body,
+    .challenge .body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .body p,
+    .project .body p,
+    .challenge .body p,
+    .challenge .body .full-description {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .project .body .lead,
+    .challenge .body .day {
+        font-size: 0.875rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .project .header .category,
+    .project .body .category {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.8rem;
+    }
+
+    .footer,
+    .project .footer,
+    .challenge .footer {
+        padding: 0.75rem 1rem 1rem;
+    }
+
+    /* Lightbox close button moves inside on mobile (no room above) */
+    .lightbox .close {
+        top: 0.5rem;
+        right: 0.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project .dialog,
+    .challenge .dialog {
+        width: 98vw;
+        height: auto;
+        max-height: 90vh;
+    }
+
+    .body,
+    .project .body,
+    .challenge .body {
+        padding: 0.75rem;
+    }
+
+    .header h2,
+    .project .header h2,
+    .challenge .header h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .project .body .lead,
+    .challenge .body .day {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .body p,
+    .project .body p,
+    .challenge .body p,
+    .challenge .body .full-description {
+        font-size: 0.75rem;
+        line-height: 1.55;
+    }
+
+    .project .header .category,
+    .project .body .category {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+}

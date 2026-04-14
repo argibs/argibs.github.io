@@ -1,0 +1,126 @@
+.card {
+    background: #f9f7f3;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition, all 0.3s ease), opacity 0.6s ease, transform 0.6s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.imageWrap {
+    position: relative;
+    width: 100%;
+    height: 224px;
+    overflow: hidden;
+    background: var(--bg-light);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+}
+
+.card:hover .image {
+    transform: scale(1.1);
+}
+
+.svgPlaceholder {
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 35% 40%, rgba(39, 174, 96, 0.55) 0%, rgba(39, 174, 96, 0) 45%),
+        radial-gradient(circle at 55% 55%, rgba(46, 204, 113, 0.65) 0%, rgba(46, 204, 113, 0) 50%),
+        linear-gradient(135deg, #d8e8d5 0%, #c5d9c0 100%);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(74, 144, 226, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.viewDetails {
+    color: white;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.64rem 1.44rem;
+    border: 2px solid white;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .viewDetails {
+    background: white;
+    color: var(--primary-color);
+}
+
+.body {
+    padding: 1.44rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.28rem 0.72rem;
+    border-radius: 16px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+    width: fit-content;
+}
+
+.title {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0 0 0.64rem;
+    line-height: 1.3;
+}
+
+.description {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

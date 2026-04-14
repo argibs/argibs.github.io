@@ -1,0 +1,19 @@
+.section {
+    padding: 5rem 0 4rem;
+    scroll-margin-top: 96px;
+    position: relative;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+}

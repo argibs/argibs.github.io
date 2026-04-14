@@ -1,0 +1,46 @@
+/* Ported from styles.css 679-719: .project-filters, .filter-btn */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.btn {
+    padding: 0.48rem 1.44rem;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    font-family: inherit;
+}
+
+.btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+@media (max-width: 640px) {
+    .filters {
+        gap: 0.4rem;
+    }
+    .btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.72rem;
+    }
+}

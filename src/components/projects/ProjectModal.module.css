@@ -1,0 +1,101 @@
+/* Ported from styles.css .project-modal* (two-column: image-left, info-right) */
+
+.imageSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 1.5rem;
+    background: rgba(201, 168, 118, 0.12);
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 0;
+    padding: 1.75rem 2rem;
+    background: rgba(61, 139, 111, 0.1);
+}
+
+.image {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.category {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.lead {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0 0 0.8rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    .lead {
+        font-size: 1.1rem;
+    }
+    .description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .category {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+    .title {
+        font-size: 1.3rem;
+    }
+    .lead {
+        font-size: 0.95rem;
+    }
+    .description {
+        font-size: 0.85rem;
+    }
+}

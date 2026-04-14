@@ -1,0 +1,15 @@
+.fullBleed {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.image {
+  max-width: 95vw;
+  max-height: 95vh;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,133 @@
+/* Navigation - ported from original styles.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(234, 230, 221, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+  transition: var(--transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 16px;
+}
+
+.navbar.scrolled {
+  background: rgba(234, 230, 221, 0.98);
+  box-shadow: var(--shadow-md);
+}
+
+/* Brand (left side) */
+.brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  transition: var(--transition);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+}
+
+/* Menu (ul) */
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 1.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  list-style: none;
+}
+
+.menu li button,
+.menu li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition);
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu li button::after,
+.menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.menu li button:hover::after,
+.menu li a:hover::after,
+.menu li button.active::after,
+.menu li a.active::after {
+  width: 100%;
+}
+
+/* Hamburger toggle - hidden on desktop */
+.toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .menu {
+    position: fixed;
+    left: -100%;
+    top: 100%;
+    flex-direction: column;
+    background-color: var(--bg-light);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: var(--shadow-md);
+    padding: 1.6rem 0;
+    margin-top: 0;
+    gap: 1.2rem;
+  }
+
+  .menu.open {
+    left: 0;
+  }
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.externalIcon {
+    font-size: 0.8em;
+    margin-left: 0.25em;
+    opacity: 0.7;
+    display: inline-block;
+    line-height: 1;
+}

@@ -1,0 +1,29 @@
+/* Ported from styles.css: .projects-unified-panel (466-477) and #projects .container */
+
+.section {
+    padding: 5rem 0 4rem;
+    scroll-margin-top: 96px;
+    position: relative;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    margin: 0 auto;
+}
+
+.heading {
+    text-align: center;
+    margin: 0 0 1.2rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+}

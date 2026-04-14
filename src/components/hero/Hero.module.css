@@ -1,0 +1,299 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    min-height: 100vh;
+    scroll-margin-top: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent;
+    padding: 80px 16px 64px;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    width: 100%;
+    animation: fadeInUp 1s ease;
+}
+
+.externalIcon {
+    font-size: 0.85em;
+    margin-left: 0.35em;
+    opacity: 0.8;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Hero Header */
+.header {
+    text-align: center;
+    margin-bottom: 2.4rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.name {
+    font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.tagline {
+    font-size: clamp(0.88rem, 2vw, 1.2rem);
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.location {
+    font-size: clamp(0.8rem, 1.6vw, 0.96rem);
+    color: var(--text-secondary);
+    margin: 0 0 1.6rem 0;
+}
+
+/* Compact Skills & Connect */
+.skillsCompact,
+.connectCompact {
+    margin-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.compactLabel {
+    font-size: clamp(0.72rem, 1.44vw, 0.8rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.skillsList,
+.connectList {
+    display: flex;
+    gap: 0.48rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Skill Chips */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    padding: 0.32rem 0.64rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: default;
+}
+
+.chip:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.chipIcon {
+    font-size: 0.96rem;
+}
+
+.chipText {
+    font-size: clamp(0.64rem, 1.2vw, 0.72rem);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Connect Buttons */
+.connectButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    padding: 0.4rem 0.8rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+    border: 2px solid transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+.connectButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.connectButtonPrimary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.connectButtonPrimary:hover {
+    background: var(--secondary-color);
+}
+
+.connectButtonIcon {
+    font-size: 0.96rem;
+}
+
+.connectButtonText {
+    font-size: clamp(0.68rem, 1.2vw, 0.76rem);
+    font-weight: 500;
+}
+
+/* Bio Section */
+.bioSection {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 3.2rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 2.4rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.portrait {
+    flex-shrink: 0;
+}
+
+.portrait img {
+    width: 224px;
+    height: 224px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-slow);
+}
+
+.portrait img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.bioText {
+    flex: 1;
+}
+
+.bioLead {
+    font-size: clamp(0.92rem, 2vw, 1.08rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+}
+
+.bioSecondary {
+    font-size: clamp(0.8rem, 1.6vw, 0.88rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .portrait img {
+        width: 192px;
+        height: 192px;
+    }
+
+    .bioSection {
+        padding: 2rem;
+        gap: 1.6rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: 64px 12px 48px;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .bioSection {
+        flex-direction: column;
+        padding: 1.6rem 1.2rem;
+        gap: 1.6rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .portrait {
+        text-align: center;
+    }
+
+    .portrait img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .bioLead,
+    .bioSecondary {
+        text-align: center;
+    }
+
+    .skillsCompact,
+    .connectCompact {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0.8rem;
+    }
+
+    .skillsList,
+    .connectList {
+        justify-content: center;
+    }
+
+    .chip {
+        padding: 0.28rem 0.56rem;
+    }
+
+    .chipIcon {
+        font-size: 0.8rem;
+    }
+
+    .chipText {
+        font-size: 0.6rem;
+    }
+
+    .connectButton {
+        padding: 0.36rem 0.72rem;
+    }
+
+    .connectButtonIcon {
+        font-size: 0.8rem;
+    }
+
+    .connectButtonText {
+        font-size: 0.8rem;
+    }
+}
