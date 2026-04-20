@@ -1,33 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router';
 import ExternalLinkIcon from '../common/ExternalLinkIcon';
 import { asset } from '../../utils/asset';
 import styles from './Navbar.module.css';
 
-interface NavbarProps {
-  onNavigate: (sectionId: string) => void;
-}
-
-export default function Navbar({ onNavigate }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
-  const go = (section: string) => () => {
-    onNavigate(section);
-    setMenuOpen(false);
-  };
+  const close = () => setMenuOpen(false);
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-      <button type="button" className={styles.brand} onClick={go('hero')}>
-        Ashton Gibson
-      </button>
+    <nav className={styles.navbar}>
       <button
         type="button"
         className={styles.toggle}
@@ -39,13 +26,22 @@ export default function Navbar({ onNavigate }: NavbarProps) {
       </button>
       <ul className={`${styles.menu} ${menuOpen ? styles.open : ''}`}>
         <li>
-          <button type="button" onClick={go('hero')}>Home</button>
+          <Link
+            to="/projects"
+            className={isActive('/projects') ? styles.active : ''}
+            onClick={close}
+          >
+            Projects
+          </Link>
         </li>
         <li>
-          <button type="button" onClick={go('projects')}>Projects</button>
-        </li>
-        <li>
-          <button type="button" onClick={go('challenge')}>30 Day Map Challenge 2025</button>
+          <Link
+            to="/challenge"
+            className={isActive('/challenge') ? styles.active : ''}
+            onClick={close}
+          >
+            30 Day Map Challenge
+          </Link>
         </li>
         <li>
           <a href={asset('assets/resume/Resume11-3-25.pdf')} target="_blank" rel="noopener noreferrer">

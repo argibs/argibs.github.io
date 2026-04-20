@@ -75,10 +75,10 @@
     position: relative;
     background: white;
     border-radius: 13px;
-    width: 80vw;
-    height: 70vh;
-    max-width: 1200px;
-    max-height: 90vh;
+    width: 88vw;
+    height: 77vh;
+    max-width: 1320px;
+    max-height: 95vh;
     overflow: hidden;
     box-shadow: var(--shadow-lg, 0 24px 80px rgba(0, 0, 0, 0.4));
     animation: baseModalSlideUp 0.4s ease;
@@ -182,9 +182,9 @@
 
 .project .dialog {
     background: white;
-    width: min(1100px, 90vw);
+    width: min(1210px, 95vw);
     height: auto;
-    max-height: 85vh;
+    max-height: 93vh;
 }
 
 .project .header {
@@ -270,9 +270,9 @@
 
 .challenge .dialog {
     background: white;
-    width: min(1100px, 90vw);
+    width: min(1210px, 95vw);
     height: auto;
-    max-height: 85vh;
+    max-height: 93vh;
 }
 
 .challenge .header {

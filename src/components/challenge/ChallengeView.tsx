@@ -21,7 +21,7 @@ export default function ChallengeView() {
         <>
           <header className={styles.header}>
             <h1 className={styles.title}>30 Day Map Challenge 2025</h1>
-            <p className={styles.subtitle}>November 2025 · Daily Mapping Challenge</p>
+            <p className={styles.subtitle}>November 2025 - Daily Mapping Challenge</p>
           </header>
           <CalendarGrid days={data ?? []} onOpenDay={setOpenDay} />
           <ChallengeModal

@@ -1,0 +1,38 @@
+.track {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    right: 8px;
+    width: 5px;
+    border-radius: 3px;
+    opacity: 1;
+    transition: opacity 0.3s ease, width 0.2s ease;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.track.visible {
+    opacity: 1;
+}
+
+.track:hover {
+    width: 8px;
+}
+
+.thumb {
+    width: 100%;
+    border-radius: inherit;
+    background: var(--primary-color);
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+    cursor: grab;
+}
+
+.thumb:hover {
+    opacity: 0.8;
+}
+
+.thumb:active {
+    opacity: 0.9;
+    cursor: grabbing;
+}

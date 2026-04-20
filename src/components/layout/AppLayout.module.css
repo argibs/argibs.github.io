@@ -1,0 +1,23 @@
+.landingMain {
+  padding-top: 48px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.appShell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.contentMain {
+  margin-left: 280px;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .contentMain {
+    margin-left: 0;
+  }
+}

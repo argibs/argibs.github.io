@@ -7,7 +7,7 @@ import ProjectFilters from './ProjectFilters';
 import ProjectGrid from './ProjectGrid';
 import ProjectModal from './ProjectModal';
 import Lightbox from '../common/Lightbox';
-import styles from './ProjectsSection.module.css';
+import SectionPanel from '../common/SectionPanel';
 
 export default function ProjectsSection() {
   const { data, loading, error } = useFetchJSON<Project[]>(asset('projects.json'));
@@ -22,50 +22,28 @@ export default function ProjectsSection() {
     [data, category, subcategory],
   );
 
-  if (loading)
-    return (
-      <section id="projects" className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.panel}>
-            <p>Loading projects...</p>
-          </div>
-        </div>
-      </section>
-    );
-  if (error)
-    return (
-      <section id="projects" className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.panel}>
-            <p>Failed to load projects.</p>
-          </div>
-        </div>
-      </section>
-    );
+  if (loading) return <SectionPanel id="projects"><p>Loading projects...</p></SectionPanel>;
+  if (error) return <SectionPanel id="projects"><p>Failed to load projects.</p></SectionPanel>;
 
   return (
-    <section id="projects" className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.panel}>
-          <h2 className={styles.heading}>Projects</h2>
-          <ProjectFilters
-            filters={filters}
-            activeCategory={category}
-            activeSubcategory={subcategory}
-            onChange={(cat, sub) => {
-              setCategory(cat);
-              setSubcategory(sub);
-            }}
-          />
-          <ProjectGrid projects={visible} onOpen={setOpenProject} />
-        </div>
-      </div>
+    <SectionPanel id="projects">
+      <h2 style={{ textAlign: 'center', margin: '0 0 1.2rem', fontSize: '2rem', color: 'var(--text-primary)' }}>Projects</h2>
+      <ProjectFilters
+        filters={filters}
+        activeCategory={category}
+        activeSubcategory={subcategory}
+        onChange={(cat, sub) => {
+          setCategory(cat);
+          setSubcategory(sub);
+        }}
+      />
+      <ProjectGrid projects={visible} onOpen={setOpenProject} />
       <ProjectModal
         project={openProject}
         onClose={() => setOpenProject(null)}
         onImageClick={setLightboxSrc}
       />
       <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
-    </section>
+    </SectionPanel>
   );
 }

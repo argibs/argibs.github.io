@@ -12,7 +12,7 @@
     "subcategory": "Environ 309",
     "title": "Earthquake Risk Assessment, part 2",
     "description": "Final project for Environ 309: Combines geologic and demographic factors to identify at-risk areas.",
-    "image":"assets/images/Overlay-Layout.jpg",
+    "image": "assets/images/Overlay-Layout.jpg",
     "fullDescription": "This analysis combines geologic and demographic factors using raster calculations and spatial overlay tools to identify high-risk areas and vulnerable populations."
   },
   {
@@ -53,7 +53,7 @@
     "title": "3D Terrain and Cost Path Analysis",
     "description": "In this project I calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
     "image": "assets/images/cost_path.jpg",
-    "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the “cost” of a path is calculated and changed given different input parameters."
+    "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the \"cost\" of a path is calculated and changed given different input parameters."
   },
   {
     "category": "personal",

@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import ExternalLinkIcon from '../common/ExternalLinkIcon';
 import { asset } from '../../utils/asset';
 import styles from './Hero.module.css';
@@ -6,13 +7,11 @@ export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.content}>
-        {/* Header: Name & Identity with Compact Skills/Connect */}
         <div className={styles.header}>
           <h1 className={styles.name}>Ashton Gibson</h1>
           <p className={styles.tagline}>GIS Specialist | Environmental Science | Cartographic Design</p>
-          <p className={styles.location}>📍 University of Michigan · Geospatial Data Science</p>
+          <p className={styles.location}>University of Michigan - Geospatial Data Science</p>
 
-          {/* Compact Skills Row */}
           <div className={styles.skillsCompact}>
             <span className={styles.compactLabel}>Technical Expertise:</span>
             <div className={styles.skillsList}>
@@ -35,7 +34,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Compact Connect Buttons */}
           <div className={styles.connectCompact}>
             <span className={styles.compactLabel}>Let's Connect:</span>
             <div className={styles.connectList}>
@@ -59,19 +57,17 @@ export default function Hero() {
                 <span className={styles.connectButtonText}>Resume</span>
                 <ExternalLinkIcon className={styles.externalIcon} />
               </a>
-              <button
-                type="button"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              <Link
+                to="/projects"
                 className={`${styles.connectButton} ${styles.connectButtonPrimary}`}
               >
                 <span className={styles.connectButtonIcon}>→</span>
                 <span className={styles.connectButtonText}>View Projects</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bio & Photo Section */}
         <div className={styles.bioSection}>
           <div className={styles.portrait}>
             <img src={asset('assets/images/IMG_3908.JPG')} alt="Ashton Gibson" />

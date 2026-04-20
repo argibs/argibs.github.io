@@ -1,19 +1,42 @@
 .section {
-    padding: 5rem 0 4rem;
-    scroll-margin-top: 96px;
+    padding: 1.5rem 2.5rem;
     position: relative;
+    height: 100vh;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container {
-    max-width: 90vw;
+    max-width: 72%;
     margin: 0 auto;
+    height: 100%;
+}
+
+.panelWrap {
+    position: relative;
+    height: 100%;
 }
 
 .panel {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 2.5rem;
     border-radius: 16px;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.panel::-webkit-scrollbar {
+    display: none;
+
 }

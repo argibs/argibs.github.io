@@ -25,8 +25,8 @@ const contourColors = {
   mountain: 'rgba(60,60,60,0.5)',
 };
 
-const cellSize = 16;
-const noiseScale = 0.03;
+const cellSize = 12;
+const noiseScale = 0.04;
 const contourLevels = 20;
 
 function getColor(e: number): [number, number, number] {
