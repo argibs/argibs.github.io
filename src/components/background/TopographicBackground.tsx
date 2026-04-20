@@ -45,7 +45,11 @@ function getColor(e: number): [number, number, number] {
   return [last.r, last.g, last.b];
 }
 
-export default function TopographicBackground() {
+interface Props {
+  onReady?: () => void;
+}
+
+export default function TopographicBackground({ onReady }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -176,10 +180,11 @@ export default function TopographicBackground() {
     };
 
     render();
+    onReady?.();
     const onResize = () => render();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, []);
+  }, [onReady]);
 
   return <canvas ref={canvasRef} className={styles.canvas} />;
 }

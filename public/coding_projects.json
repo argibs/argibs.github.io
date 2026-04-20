@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Green Gentrification Vulnerability Index",
+    "description": "Automates census data retrieval and spatial analysis to calculate a vulnerability index for Detroit census tracts using PCA-weighted indicators.",
+    "tags": ["Python", "Jupyter", "GeoPandas", "Census API", "scikit-learn"],
+    "date": "2026",
+    "notebook": "assets/coding_projects/FinalProj.ipynb"
+  }
+]

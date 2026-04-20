@@ -26,12 +26,10 @@ export default function ChallengeModal({ day, onClose, onImageClick }: Props) {
       labelledBy="challenge-modal-title"
     >
       <div className={styles.imageSection}>
-        <img
-          src={imgSrc}
-          alt={day.title}
-          className={styles.image}
-          onClick={() => onImageClick(imgSrc)}
-        />
+        <div className={styles.imageWrap} onClick={() => onImageClick(imgSrc)}>
+          <img src={imgSrc} alt={day.title} className={styles.image} />
+          <span className={styles.expandHint}>Click the image to expand</span>
+        </div>
       </div>
       <div className={styles.infoSection}>
         <span className={styles.dayLabel}>Day {day.day}</span>

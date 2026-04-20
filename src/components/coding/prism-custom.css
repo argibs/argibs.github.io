@@ -1,0 +1,70 @@
+/* Custom Prism theme - VS Code Dark+ inspired, high contrast on #1e1e1e */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6a9955;
+    font-style: italic;
+}
+
+.token.punctuation {
+    color: #d4d4d4;
+}
+
+.token.keyword,
+.token.builtin {
+    color: #c586c0;
+}
+
+.token.boolean,
+.token.constant {
+    color: #569cd6;
+}
+
+.token.number {
+    color: #b5cea8;
+}
+
+.token.string,
+.token.char,
+.token.attr-value {
+    color: #ce9178;
+}
+
+.token.operator {
+    color: #d4d4d4;
+}
+
+.token.function {
+    color: #dcdcaa;
+}
+
+.token.class-name {
+    color: #4ec9b0;
+}
+
+.token.variable {
+    color: #9cdcfe;
+}
+
+.token.property {
+    color: #9cdcfe;
+}
+
+.token.decorator {
+    color: #dcdcaa;
+}
+
+.token.triple-quoted-string {
+    color: #ce9178;
+}
+
+.token.imports .token.punctuation,
+.token.imports .token.keyword {
+    color: #c586c0;
+}
+
+.token.imports .token.known-class-name {
+    color: #4ec9b0;
+}

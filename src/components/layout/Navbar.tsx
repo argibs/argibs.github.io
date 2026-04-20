@@ -44,6 +44,24 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
+          <Link
+            to="/coding"
+            className={isActive('/coding') ? styles.active : ''}
+            onClick={close}
+          >
+            Coding Projects
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/webgis"
+            className={isActive('/webgis') ? styles.active : ''}
+            onClick={close}
+          >
+            Web GIS Experience
+          </Link>
+        </li>
+        <li>
           <a href={asset('assets/resume/Resume11-3-25.pdf')} target="_blank" rel="noopener noreferrer">
             Resume <ExternalLinkIcon className={styles.externalIcon} />
           </a>

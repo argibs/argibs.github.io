@@ -22,12 +22,10 @@ export default function ProjectModal({ project, onClose, onImageClick }: Props) 
       labelledBy="project-modal-title"
     >
       <div className={styles.imageSection}>
-        <img
-          src={imgSrc}
-          alt={project.title}
-          className={styles.image}
-          onClick={() => onImageClick(imgSrc)}
-        />
+        <div className={styles.imageWrap} onClick={() => onImageClick(imgSrc)}>
+          <img src={imgSrc} alt={project.title} className={styles.image} />
+          <span className={styles.expandHint}>Click the image to expand</span>
+        </div>
       </div>
       <div className={styles.infoSection}>
         <span className={styles.category}>{project.category}</span>

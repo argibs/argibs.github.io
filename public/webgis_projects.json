@@ -1,0 +1,34 @@
+[
+  {
+    "title": "EGLE GIS Solutions & Dashboard Modernization",
+    "description": "As a GIS Assistant, I help teams across EGLE design and implement GIS solutions. I also have helped in the organization-wide effort to modernize the deprecated Esri Web App Builder (WAB) dashboards to the more modern and accessible Experience Builder platform.",
+    "highlights": [
+      {
+        "text": "Rebuilt the EGLE Interests internal-only dashboard in the GIS Portal environment. This synthesizes EGLE project data points from over 10 different database systems, and is used by the executive office at EGLE to gain an overarching \"at a glance\" understanding of the depth and scope of work being done across the state."
+      },
+      {
+        "text": "Designed an alternative to the deprecated WAB custom filter in Experience Builder, effectively transitioning the platform without sacrificing functionality."
+      }
+    ],
+    "tags": ["ArcGIS Enterprise", "Experience Builder", "Portal", "Dashboard"],
+    "date": "2025-Present"
+  },
+  {
+    "title": "StoryMaps",
+    "description": "Applied Web GIS storytelling tools to communicate spatial narratives for both academic and professional projects.",
+    "highlights": [
+      {
+        "text": "Applied GIS to telling the story of cattle evolution from an environmental archaeology perspective, for Environ 340.",
+        "linkLabel": "View StoryMap",
+        "linkUrl": "https://storymaps.arcgis.com/stories/aad52c6f0bd746c4856f0cfde401dabf"
+      },
+      {
+        "text": "At EGLE, contributed to MiHCP StoryMap by adding alt text to all images, configuring embedded dashboard links, adding media as requested by OCE team, and verifying accessibility. This was a team effort and I learned a lot by being able to contribute.",
+        "linkLabel": "View StoryMap",
+        "linkUrl": "https://storymaps.arcgis.com/stories/61bdbe70a1354b189110a10021c3325d"
+      }
+    ],
+    "tags": ["ArcGIS StoryMaps", "Accessibility", "Web GIS"],
+    "date": "2024-2025"
+  }
+]

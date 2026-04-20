@@ -6,7 +6,7 @@
     justify-content: center;
     min-width: 0;
     padding: 1.5rem;
-    background: rgba(201, 168, 118, 0.12);
+    background: rgba(201, 168, 118, 0.2);
 }
 
 .infoSection {
@@ -15,7 +15,15 @@
     gap: 0.6rem;
     min-width: 0;
     padding: 1.75rem 2rem;
-    background: rgba(61, 139, 111, 0.1);
+    background: rgba(61, 139, 111, 0.15);
+}
+
+.imageWrap {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .image {
@@ -29,9 +37,30 @@
     display: block;
 }
 
-.image:hover {
+.imageWrap:hover .image {
     transform: scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.expandHint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.9rem;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 14px;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.imageWrap:hover .expandHint {
+    background: #2d7a5a;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(61, 139, 111, 0.3);
 }
 
 .dayLabel {

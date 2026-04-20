@@ -1,0 +1,117 @@
+.row {
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(61, 139, 111, 0.12);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.row.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+.title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.date {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(61, 139, 111, 0.12);
+    color: var(--primary-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 0.6rem;
+}
+
+.highlights {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style: disc;
+}
+
+.highlights li {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.inlineLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 14px;
+    letter-spacing: 0.3px;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.inlineLink:hover {
+    background: #2d7a5a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(61, 139, 111, 0.35);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1rem;
+    }
+
+    .description,
+    .highlights li {
+        font-size: 0.82rem;
+    }
+
+    .inlineLink {
+        display: flex;
+        margin-left: 0;
+        margin-top: 0.3rem;
+        width: fit-content;
+    }
+}

@@ -6,6 +6,8 @@ import styles from './Sidebar.module.css';
 const navItems = [
   { to: '/projects', label: 'Projects' },
   { to: '/challenge', label: '30 Day Map Challenge' },
+  { to: '/coding', label: 'Coding Projects' },
+  { to: '/webgis', label: 'Web GIS Experience' },
 ];
 
 export default function Sidebar() {

@@ -23,6 +23,9 @@ export default function DayCard({ day, onOpen }: Props) {
     >
       <span className={styles.dayNumber}>Day {day.day}</span>
       <LazyImage src={imgSrc} alt={day.title} className={styles.image} />
+      <div className={styles.overlay}>
+        <span className={styles.viewDetails}>View Details</span>
+      </div>
       <span className={styles.title}>{day.title}</span>
     </button>
   );

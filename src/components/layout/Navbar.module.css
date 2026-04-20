@@ -17,21 +17,23 @@
 .menu {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 1.8rem;
   margin: 0;
   padding: 0;
+  flex-wrap: nowrap;
 }
 
 .menu li a {
   color: #5a6b5a;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   font-family: inherit;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   transition: color 0.2s ease;
   padding: 0.2rem 0;
+  white-space: nowrap;
 }
 
 .menu li a:hover {

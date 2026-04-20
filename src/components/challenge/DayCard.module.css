@@ -56,6 +56,37 @@
     display: block;
 }
 
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: rgba(74, 144, 226, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.viewDetails {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid white;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .viewDetails {
+    background: white;
+    color: var(--primary-color);
+}
+
 .title {
     position: absolute;
     left: 0;
