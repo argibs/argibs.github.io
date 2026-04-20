@@ -7,6 +7,7 @@ import ProjectsSection from './components/projects/ProjectsSection';
 import ChallengeView from './components/challenge/ChallengeView';
 import CodingProjectsView from './components/coding/CodingProjectsView';
 import WebGISView from './components/webgis/WebGISView';
+import HighlightsView from './components/highlights/HighlightsView';
 import styles from './App.module.css';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="challenge" element={<ChallengeView />} />
             <Route path="coding" element={<CodingProjectsView />} />
             <Route path="webgis" element={<WebGISView />} />
+            <Route path="highlights" element={<HighlightsView />} />
           </Route>
         </Routes>
       </div>

@@ -4,6 +4,7 @@ import { asset } from '../../utils/asset';
 import styles from './Sidebar.module.css';
 
 const navItems = [
+  { to: '/highlights', label: 'Highlights' },
   { to: '/projects', label: 'Projects' },
   { to: '/challenge', label: '30 Day Map Challenge' },
   { to: '/coding', label: 'Coding Projects' },

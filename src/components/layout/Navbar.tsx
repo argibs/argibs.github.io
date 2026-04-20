@@ -27,6 +27,15 @@ export default function Navbar() {
       <ul className={`${styles.menu} ${menuOpen ? styles.open : ''}`}>
         <li>
           <Link
+            to="/highlights"
+            className={isActive('/highlights') ? styles.active : ''}
+            onClick={close}
+          >
+            Highlights
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/projects"
             className={isActive('/projects') ? styles.active : ''}
             onClick={close}
