@@ -99,14 +99,15 @@
   border-top: 1px solid rgba(61, 139, 111, 0.2);
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
-.linkedinLink {
+.socialLink {
   color: #5a6b5a;
   transition: color 0.2s ease;
 }
 
-.linkedinLink:hover {
+.socialLink:hover {
   color: var(--primary-color);
 }
 

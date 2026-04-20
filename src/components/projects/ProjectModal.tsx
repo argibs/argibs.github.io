@@ -28,7 +28,12 @@ export default function ProjectModal({ project, onClose, onImageClick }: Props) 
         </div>
       </div>
       <div className={styles.infoSection}>
-        <span className={styles.category}>{project.category}</span>
+        <div className={styles.badges}>
+          <span className={styles.category}>{project.category}</span>
+          {project.subcategory && (
+            <span className={styles.subcategory}>{project.subcategory}</span>
+          )}
+        </div>
         <h2 id="project-modal-title" className={styles.title}>
           {project.title}
         </h2>

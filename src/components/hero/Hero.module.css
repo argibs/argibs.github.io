@@ -161,6 +161,10 @@
     font-size: 0.96rem;
 }
 
+.connectSvg {
+    flex-shrink: 0;
+}
+
 .connectButtonText {
     font-size: clamp(0.68rem, 1.2vw, 0.76rem);
     font-weight: 500;

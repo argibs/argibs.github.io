@@ -1,74 +1,146 @@
 [
   {
     "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "Bench Suitability Model Builder Workflow",
+    "description": "ArcGIS Model Builder workflow automating the suitability analysis for bench placement in Nichols Arboretum.",
+    "image": "assets/images/model_builder.png",
+    "fullDescription": "Created for EAS 652. This Model Builder workflow automates the bench suitability analysis by calculating distance accumulation from benches and stairs, extracting slope values along trails, rescaling distances, and combining all factors into a total suitability raster using Raster Calculator."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "Suitability for Bench Placement Along Trails",
+    "description": "Raster suitability analysis for optimal bench placement along trails in Nichols Arboretum using GPS-collected data and terrain analysis.",
+    "image": "assets/images/bench_suitability.png",
+    "fullDescription": "Created for EAS 652. Suitability was assessed based on trail slope (higher slope being more suitable), GPS locations of existing benches (further from benches being more suitable), and GPS locations of stairs (closer to stairs being more suitable). DEM from SEMCOG Open Data Portal, GPS points collected by Ashton Gibson."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "Bench and Stair Locations in Nichols Arboretum",
+    "description": "GPS-collected locations of benches and stairs mapped over a hillshade DEM of Nichols Arboretum.",
+    "image": "assets/images/nichols_benches.png",
+    "fullDescription": "Created for EAS 652. Bench and stair locations collected via GPS/Field Maps by Ashton Gibson. Hillshade created via DEM from SEMCOG Open Data. Arboretum boundary from Matthaei-Nichols Staff and Affiliates."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "Mapping Imagery Pixels on the Ground",
+    "description": "Visualizing the physical ground footprint of satellite imagery pixels from Landsat, Sentinel-2, and NAIP.",
+    "image": "assets/images/pixel_mapping.png",
+    "fullDescription": "Created for EAS 652. GPS data points collected by Ashton Gibson and classmates show pixel center points and mapped pixel boundaries for Landsat (30m), Sentinel-2 (10m), and NAIP (30cm) imagery, comparing Trimble DA2 and iPhone 16 receivers."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "GPS Feature Accuracy Analysis",
+    "description": "Mapping collected features by horizontal accuracy to evaluate GPS receiver performance in a field setting.",
+    "image": "assets/images/nichols_accuracy.png",
+    "fullDescription": "Created for EAS 652. Features collected by Ashton Gibson in Nichols Arboretum are displayed by horizontal accuracy class, comparing points, lines, and polygons from different GPS receivers and collection methods."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 652",
+    "title": "Refining Field Maps Data Collection in Nichols Arboretum",
+    "description": "GPS field data collection comparing Trimble DA2 and iPhone receivers for mapping features in Nichols Arboretum.",
+    "image": "assets/images/nichols_fieldmaps.png",
+    "fullDescription": "Created for EAS 652. GPS data points were collected using Trimble DA2 (#6322100240) and iPhone 11 receivers with and without point averaging. Features include points, lines, and polygons mapped on historical aerial imagery (2010) from SEMCOG."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "NDVI of Southeast Peru",
+    "description": "Normalized Difference Vegetation Index computed from 2024 Landsat 8/9 imagery with hillshade for Southeast Peru.",
+    "image": "assets/images/ndvi_peru.png",
+    "fullDescription": "Created for EAS 541. NDVI computed in Google Earth Engine using Landsat 8/9 Collection 2 Level-2 Surface Reflectance data (dates: 06/01/2024-09/30/24). Hillshade from SRTM elevation. Land cover context from ESA WorldCover 2021."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "Land Cover Change Detection for Krasnoyarsk Krai",
+    "description": "Detecting land cover changes between 1991 and 2000 in Krasnoyarsk Krai, Russia using Landsat imagery.",
+    "image": "assets/images/krasnoyarsk_change.png",
+    "fullDescription": "Created for EAS 541. Change categories include no change, disturbed areas, forest regeneration and succession, development, and noise/error. Analysis used 1991 and 2000 Landsat imagery products."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "3D Scene View of Canopy Height at La Selva, Costa Rica",
+    "description": "3D visualization of canopy height at La Selva Biological Station, derived from LiDAR data.",
+    "image": "assets/images/laselva_3d.png",
+    "fullDescription": "Created for EAS 541. Canopy height calculated from NASA LVIS LDS data, displayed as a 3D scene view showing the variation in forest canopy structure across the La Selva Biological Station boundary."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "Canopy Height, DEM, and DSM of La Selva Biological Station",
+    "description": "Visualization of canopy height, digital elevation model, and digital surface model for La Selva Biological Station in Costa Rica.",
+    "image": "assets/images/laselva_canopy.png",
+    "fullDescription": "Created for EAS 541. DEM and DSM derived from NASA LVIS LDS V. 1.02, 2006. La Selva Boundary from the Organization for Tropical Studies. The layout shows three views: canopy height, bare-earth elevation, and surface model of the tropical forest."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "Automated Land Cover Classification of UMBS",
+    "description": "Comparing supervised and unsupervised classification methods for land cover mapping at the University of Michigan Biological Station.",
+    "image": "assets/images/umbs_classification.jpg",
+    "fullDescription": "Created for EAS 541. Classification is based on Landsat satellite imagery captured along WRS-2 path 22 row 28 on June 24, 2015. The side-by-side comparison shows deciduous forest, coniferous forest, field/built, and water classes derived from both supervised and unsupervised methods."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "Stinchfield Woods Land Cover ca. 1970",
+    "description": "Land cover classification of Stinchfield Woods interpreted from 1970 aerial photography.",
+    "image": "assets/images/stinchfield_landcover.jpg",
+    "fullDescription": "Created for EAS 541. Land cover was interpreted from 1970 aerial photography using student photo sets. Classifications include cropland, lake, wetland types, residential, upland grasses/shrubs, hardwoods, and pine forests. Hydrology data from MI DNR MIRIS Base Map Data (1978)."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 541",
+    "title": "Landsat-8 False-Color Infrared Composite of UMBS",
+    "description": "Standard false-color infrared composite of the University of Michigan Biological Station area using Landsat-8 imagery.",
+    "image": "assets/images/landsat_umbs.png",
+    "fullDescription": "Created for EAS 541. This map shows a false-color infrared composite from Landsat-8 imagery (NASA/USGS, 6/24/2015) of the University of Michigan Biological Station, highlighting vegetation health and water bodies."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 519",
+    "title": "South Boardman River Watershed: Land Use and Potential Impairment Sources",
+    "description": "Mapping land cover types and potential impairment sources along the South Branch Boardman River for an environmental analysis project.",
+    "image": "assets/images/boardman_watershed.jpg",
+    "fullDescription": "Created for EAS 519: Climate Change vs. Everything Else Causing Impairments. This map displays 2023 land cover classifications alongside potential impairment sources including underground storage tanks, oil wells, natural gas wells, and gas condensate wells within the South Branch Boardman River watershed."
+  },
+  {
+    "category": "coursework",
     "subcategory": "EAS 531",
-    "title": "Vector Spatial Overlay Analysis",
-    "description": "Real-world GIS application displaying multiple types of spatial information in a digestible format for general audiences.",
-    "image": "assets/images/TRI-layout.jpg",
-    "fullDescription": "Completed as part of Environ 531: GIS Principles. This course emphasized real-world applications of GIS, and the goal of this assignment was to display multiple types of spatial information in a way which is still digestible to a general audience."
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Environ 309",
-    "title": "Earthquake Risk Assessment, part 2",
-    "description": "Final project for Environ 309: Combines geologic and demographic factors to identify at-risk areas.",
-    "image": "assets/images/Overlay-Layout.jpg",
-    "fullDescription": "This analysis combines geologic and demographic factors using raster calculations and spatial overlay tools to identify high-risk areas and vulnerable populations."
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Environ 309",
-    "title": "Earthquake Risk Assessment, part 1",
-    "description": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
-    "image": "assets/images/Liquefaction-Risk-Layout.jpg",
-    "fullDescription": "This analysis used raster calculations to combine geologic factors like soil porosity and water availability, then reclassed the values to ranked scores."
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Environ 309",
-    "title": "Vector Suitability Analysis",
-    "description": "Spatial analysis and cartographic visualization of hypothetical risk surrounding Fermi 2 Nuclear Generating Station.",
-    "image": "assets/images/FermiLayout.jpg",
-    "fullDescription": "This assignment used stacked data queries to identify regions of interest, as well as spatial overlay tools to combine the various data sources. I also utilized Esri data enrichment to calculate spatial statistics for the region."
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Earth 408",
-    "title": "Raster Suitability Analysis",
-    "description": "Employed ArcGIS Model Builder and Python scripting to combine multiple raster datasets.",
-    "image": "assets/images/suitability_analysis.jpg",
-    "fullDescription": "Completed for Earth 408. In this assignment I employed ArcGIS Model Builder and Python script to analyze and edit multiple raster datasets at once using various raster calculations, ultimately outputting a dataset that displayed areas with the correct limiting criteria.."
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Earth 408",
-    "title": "Watershed Boundary Delineation",
-    "description": "Here I used a digital elevation model to calculate the watershed boundary, flow direction, and stream order of the study area, using ArcGIS Hydrologic Modeling tools.",
-    "image": "assets/images/watershed.jpg",
-    "fullDescription": " "
-  },
-  {
-    "category": "coursework",
-    "subcategory": "Earth 408",
-    "title": "3D Terrain and Cost Path Analysis",
-    "description": "In this project I calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
-    "image": "assets/images/cost_path.jpg",
-    "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the \"cost\" of a path is calculated and changed given different input parameters."
+    "title": "Comparing Map Projections of the United States",
+    "description": "Side-by-side comparison of six map projections to illustrate how projection choice affects spatial representation.",
+    "image": "assets/images/map_projections.jpg",
+    "fullDescription": "Created for EAS 531. This layout compares Plate Caree, Mercator, UTM Zone 17N, Michigan GeoRef, Lambert Conformal Conic, and Albers Equal Area Conic projections of the United States, highlighting distortion differences across coordinate systems."
   },
   {
     "category": "personal",
     "subcategory": "QGIS",
-    "title": "Lake Michigan Bathymetry Visualization",
-    "description": "Exploring bathymetry data visualization by testing color palettes and cartographic styles.",
-    "image": "assets/images/lake_michigan.png",
-    "fullDescription": " "
+    "title": "30 Day Map Challenge- Day 2",
+    "description": "Alternate visualization for my 'Line' themed map. Check out my other projects from this challenge on the 'Map Challenge' page!",
+    "image": "assets/images/GrandRiverInferno.png",
+    "fullDescription": "This map shows a relative elevation model of a section of the Grand River, near Grand Ledge, MI."
   },
   {
     "category": "personal",
     "subcategory": "QGIS",
-    "title": "Lake Superior Bathymetry Visualization",
-    "description": "I continue the bathymetry series with Lake Superior, showcasing different color palettes and design",
-    "image": "assets/images/lake_superior.jpg",
+    "title": "Douglas Lake Bathymetry",
+    "description": "Visualization of Douglas Lake's depth and features.",
+    "image": "assets/images/douglaslake_newcolor.JPEG",
+    "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
+  },
+  {
+    "category": "personal",
+    "subcategory": "QGIS",
+    "title": "UMS Ticket Office Venues Map",
+    "description": "This map shows the venues of my undergraduate job at the UMS Ticket Office, which I created to show how GIS can be applied beyond strictly scientific fields. Spatial data is all around us!",
+    "image": "assets/images/ums.png",
     "fullDescription": " "
   },
   {
@@ -82,25 +154,73 @@
   {
     "category": "personal",
     "subcategory": "QGIS",
-    "title": "UMS Ticket Office Venues Map",
-    "description": "This map shows the venues of my undergraduate job at the UMS Ticket Office, which I created to show how GIS can be applied beyond strictly scientific fields. Spatial data is all around us!",
-    "image": "assets/images/ums.png",
+    "title": "Lake Superior Bathymetry Visualization",
+    "description": "I continue the bathymetry series with Lake Superior, showcasing different color palettes and design",
+    "image": "assets/images/lake_superior.jpg",
     "fullDescription": " "
   },
   {
     "category": "personal",
     "subcategory": "QGIS",
-    "title": "Douglas Lake Bathymetry",
-    "description": "Visualization of Douglas Lake's depth and features.",
-    "image": "assets/images/douglaslake_newcolor.JPEG",
-    "fullDescription": "This was created while I took field classes at University of Michigan Biological Station, continuiong my exploration of color ramps and shading to show depth."
+    "title": "Lake Michigan Bathymetry Visualization",
+    "description": "Exploring bathymetry data visualization by testing color palettes and cartographic styles.",
+    "image": "assets/images/lake_michigan.png",
+    "fullDescription": " "
   },
   {
-    "category": "personal",
-    "subcategory": "QGIS",
-    "title": "30 Day Map Challenge- Day 2",
-    "description": "Alternate visualization for my 'Line' themed map. Check out my other projects from this challenge on the 'Map Challenge' page!",
-    "image": "assets/images/GrandRiverInferno.png",
-    "fullDescription": "This map shows a relative elevation model of a section of the Grand River, near Grand Ledge, MI."
+    "category": "coursework",
+    "subcategory": "Earth 408",
+    "title": "3D Terrain and Cost Path Analysis",
+    "description": "In this project I calculated optimal paths over digital elevation models showing how terrain affects pathfinding cost.",
+    "image": "assets/images/cost_path.jpg",
+    "fullDescription": "This project shows the local 3D scene of a shaded relief of terrain. I calculated distance over a digital elevation model, and learned how the \"cost\" of a path is calculated and changed given different input parameters."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Earth 408",
+    "title": "Watershed Boundary Delineation",
+    "description": "Here I used a digital elevation model to calculate the watershed boundary, flow direction, and stream order of the study area, using ArcGIS Hydrologic Modeling tools.",
+    "image": "assets/images/watershed.jpg",
+    "fullDescription": " "
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Earth 408",
+    "title": "Raster Suitability Analysis",
+    "description": "Employed ArcGIS Model Builder and Python scripting to combine multiple raster datasets.",
+    "image": "assets/images/suitability_analysis.jpg",
+    "fullDescription": "Completed for Earth 408. In this assignment I employed ArcGIS Model Builder and Python script to analyze and edit multiple raster datasets at once using various raster calculations, ultimately outputting a dataset that displayed areas with the correct limiting criteria.."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Environ 309",
+    "title": "Vector Suitability Analysis",
+    "description": "Spatial analysis and cartographic visualization of hypothetical risk surrounding Fermi 2 Nuclear Generating Station.",
+    "image": "assets/images/FermiLayout.jpg",
+    "fullDescription": "This assignment used stacked data queries to identify regions of interest, as well as spatial overlay tools to combine the various data sources. I also utilized Esri data enrichment to calculate spatial statistics for the region."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Environ 309",
+    "title": "Earthquake Risk Assessment, part 1",
+    "description": "Comprehensive semester project assessing earthquake and liquefaction risk along the San Andreas fault.",
+    "image": "assets/images/Liquefaction-Risk-Layout.jpg",
+    "fullDescription": "This analysis used raster calculations to combine geologic factors like soil porosity and water availability, then reclassed the values to ranked scores."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "Environ 309",
+    "title": "Earthquake Risk Assessment, part 2",
+    "description": "Final project for Environ 309: Combines geologic and demographic factors to identify at-risk areas.",
+    "image": "assets/images/Overlay-Layout.jpg",
+    "fullDescription": "This analysis combines geologic and demographic factors using raster calculations and spatial overlay tools to identify high-risk areas and vulnerable populations."
+  },
+  {
+    "category": "coursework",
+    "subcategory": "EAS 531",
+    "title": "Vector Spatial Overlay Analysis",
+    "description": "Real-world GIS application displaying multiple types of spatial information in a digestible format for general audiences.",
+    "image": "assets/images/TRI-layout.jpg",
+    "fullDescription": "Completed as part of Environ 531: GIS Principles. This course emphasized real-world applications of GIS, and the goal of this assignment was to display multiple types of spatial information in a way which is still digestible to a general audience."
   }
 ]
