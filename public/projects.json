@@ -51,7 +51,7 @@
     "category": "coursework",
     "subcategory": "EAS 541",
     "title": "NDVI of Southeast Peru",
-    "description": "Normalized Difference Vegetation Index computed from 2024 Landsat 8/9 imagery with hillshade for Southeast Peru.",
+    "description": "Normalized Difference Vegetation Index computed from 2024 Landsat 8/9 imagery with hillshade for Southeast Peru using Google Earth Engine. Visualization made in ArcGIS Pro.",
     "image": "assets/images/ndvi_peru.png",
     "fullDescription": "Created for EAS 541. NDVI computed in Google Earth Engine using Landsat 8/9 Collection 2 Level-2 Surface Reflectance data (dates: 06/01/2024-09/30/24). Hillshade from SRTM elevation. Land cover context from ESA WorldCover 2021."
   },
