@@ -8,6 +8,11 @@
       },
       {
         "text": " Wetland Mitigation Banking Dashboard (in review for Open Data publishing) in ArcGIS Experience Builder: I was able to take the lead on designing this solution, which allows the public, contractors, and the EGLE Wetland Resources Division to quickly locate Wetland Mitigation Bank projects based on Watershed and ecological region boundaries. This also acts as a repository for the bank sponsor and credit information, including the number of credits remaining by wetland type at each site. This features an innovative method for spatial filtering, since project points will be identified by their relationship to a watershed \"OR\" ecological region boundary, whereas the default functionality only allows for an \"AND\" relationship. "
+      },
+      {
+        "text": "Youth Sustainability Project Showcase: I configured the tablet and mobile views of this Experience Builder and completed accessibility edits to the main computer view.",
+        "linkLabel": "View Experience",
+        "linkUrl": "https://experience.arcgis.com/experience/e992651f445b4bb9814b95161eade3fe"
       }
     ],
     "tags": ["ArcGIS Enterprise", "Experience Builder", "Portal", "Dashboard"],
