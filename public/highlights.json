@@ -1,0 +1,12 @@
+{
+  "tagline": "A random selection of my projects! Click shuffle to see more.",
+  "pool": [
+    "assets/images/ndvi_peru.png",
+    "assets/images/krasnoyarsk_change.png",
+    "assets/images/laselva_3d.png",
+    "assets/images/laselva_canopy.png",
+    "assets/images/umbs_classification.jpg",
+    "assets/images/stinchfield_landcover.jpg",
+    "assets/images/landsat_umbs.png"
+  ]
+}

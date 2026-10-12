@@ -7,6 +7,11 @@ export interface Project {
   fullDescription: string;
 }
 
+export interface HighlightsConfig {
+  tagline: string;
+  pool: string[];
+}
+
 export interface CodingProject {
   title: string;
   description: string;

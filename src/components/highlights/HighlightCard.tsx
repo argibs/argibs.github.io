@@ -1,6 +1,5 @@
 import type { Project } from '../../types';
 import LazyImage from '../common/LazyImage';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { asset } from '../../utils/asset';
 import styles from './HighlightCard.module.css';
 
@@ -11,15 +10,12 @@ interface Props {
 }
 
 export default function HighlightCard({ project, index, onOpen }: Props) {
-  const [ref, visible] = useIntersectionObserver<HTMLButtonElement>();
   const isSvg = project.image === 'svg';
 
   return (
     <button
       type="button"
-      ref={ref}
-      className={`${styles.card} ${visible ? styles.visible : ''}`}
-      style={{ transitionDelay: `${index * 0.1}s` }}
+      className={styles.card}
       onClick={onOpen}
     >
       <div className={styles.imageWrap}>
@@ -35,7 +31,7 @@ export default function HighlightCard({ project, index, onOpen }: Props) {
       <div className={styles.body}>
         <span className={styles.number}>#{index + 1}</span>
         <span className={styles.category}>{project.category}</span>
-        <h3 className={styles.title}>{project.title}</h3>
+        <h2 className={styles.title}>{project.title}</h2>
         <p className={styles.description}>{project.description}</p>
       </div>
     </button>

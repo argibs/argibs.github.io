@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import TopographicBackground from './components/background/TopographicBackground';
 import AppLayout from './components/layout/AppLayout';
@@ -11,13 +10,10 @@ import HighlightsView from './components/highlights/HighlightsView';
 import styles from './App.module.css';
 
 export default function App() {
-  const [ready, setReady] = useState(false);
-  const onBgReady = useCallback(() => setReady(true), []);
-
   return (
     <BrowserRouter>
-      <div className={`${styles.app} ${ready ? styles.ready : ''}`}>
-        <TopographicBackground onReady={onBgReady} />
+      <div className={styles.app}>
+        <TopographicBackground />
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Hero />} />

@@ -5,29 +5,31 @@ import styles from './TopographicBackground.module.css';
 type RGB = { r: number; g: number; b: number };
 
 const elevationColors: { threshold: number; color: RGB }[] = [
-  { threshold: 0.0, color: { r: 5, g: 45, b: 110 } },
-  { threshold: 0.15, color: { r: 15, g: 75, b: 140 } },
-  { threshold: 0.25, color: { r: 35, g: 105, b: 170 } },
-  { threshold: 0.3, color: { r: 65, g: 145, b: 200 } },
-  { threshold: 0.35, color: { r: 235, g: 220, b: 180 } },
-  { threshold: 0.4, color: { r: 140, g: 200, b: 120 } },
-  { threshold: 0.5, color: { r: 80, g: 160, b: 80 } },
-  { threshold: 0.6, color: { r: 50, g: 120, b: 50 } },
-  { threshold: 0.7, color: { r: 140, g: 120, b: 80 } },
-  { threshold: 0.8, color: { r: 120, g: 100, b: 70 } },
-  { threshold: 0.88, color: { r: 140, g: 140, b: 140 } },
-  { threshold: 0.95, color: { r: 250, g: 250, b: 250 } },
+  { threshold: 0.0, color: { r: 123, g: 148, b: 163 } },
+  { threshold: 0.15, color: { r: 147, g: 168, b: 179 } },
+  { threshold: 0.25, color: { r: 172, g: 191, b: 198 } },
+  { threshold: 0.3, color: { r: 194, g: 207, b: 207 } },
+  { threshold: 0.35, color: { r: 224, g: 215, b: 193 } },
+  { threshold: 0.4, color: { r: 196, g: 206, b: 181 } },
+  { threshold: 0.5, color: { r: 173, g: 191, b: 169 } },
+  { threshold: 0.6, color: { r: 155, g: 176, b: 156 } },
+  { threshold: 0.7, color: { r: 195, g: 186, b: 165 } },
+  { threshold: 0.8, color: { r: 184, g: 174, b: 157 } },
+  { threshold: 0.88, color: { r: 208, g: 203, b: 193 } },
+  { threshold: 0.95, color: { r: 245, g: 242, b: 233 } },
 ];
 
 const contourColors = {
-  water: 'rgba(0,50,100,0.3)',
-  land: 'rgba(80,60,40,0.4)',
-  mountain: 'rgba(60,60,60,0.5)',
+  water: 'rgba(85,112,128,0.16)',
+  land: 'rgba(105,112,91,0.18)',
+  mountain: 'rgba(115,106,94,0.22)',
 };
 
-const cellSize = 12;
+const cellSize = 6;
 const noiseScale = 0.04;
 const contourLevels = 20;
+const maxPixels = 480_000;
+const paletteSteps = 1024;
 
 function getColor(e: number): [number, number, number] {
   for (let i = 0; i < elevationColors.length - 1; i++) {
@@ -45,11 +47,13 @@ function getColor(e: number): [number, number, number] {
   return [last.r, last.g, last.b];
 }
 
-interface Props {
-  onReady?: () => void;
+// Interpolate once rather than searching the color stops for every viewport pixel.
+const palette = new Uint8ClampedArray(paletteSteps * 3);
+for (let i = 0; i < paletteSteps; i++) {
+  palette.set(getColor(i / (paletteSteps - 1)), i * 3);
 }
 
-export default function TopographicBackground({ onReady }: Props) {
+export default function TopographicBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -59,22 +63,30 @@ export default function TopographicBackground({ onReady }: Props) {
     if (!ctx) return;
 
     const perlin = new PerlinNoise();
+    let frame: number | null = null;
 
     const render = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      frame = null;
+      const viewportWidth = Math.max(1, window.innerWidth);
+      const viewportHeight = Math.max(1, window.innerHeight);
+      // CSS stretches the small bitmap; both pixel work and the terrain grid stay bounded.
+      const scale = Math.min(0.5, Math.sqrt(maxPixels / (viewportWidth * viewportHeight)));
+      const width = Math.max(1, Math.floor(viewportWidth * scale));
+      const height = Math.max(1, Math.floor(viewportHeight * scale));
       canvas.width = width;
       canvas.height = height;
 
       const cols = Math.ceil(width / cellSize) + 2;
       const rows = Math.ceil(height / cellSize) + 2;
       const grid = new Float32Array(cols * rows);
+      const terrainScale = cellSize / (12 * scale) * noiseScale;
 
       // generateTerrain
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
           const idx = y * cols + x;
-          const e = perlin.terrainNoise(x * noiseScale, y * noiseScale, 0.5, 4, 0.55, 2);
+          // Preserve the terrain's CSS-space scale as the render resolution changes.
+          const e = perlin.terrainNoise(x * terrainScale, y * terrainScale, 0.5, 4, 0.55, 2);
           grid[idx] = Math.pow(e, 1.2);
         }
       }
@@ -103,11 +115,11 @@ export default function TopographicBackground({ onReady }: Props) {
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           const e = sampleGrid(x, y);
-          const [r, g, b] = getColor(e);
+          const color = Math.min(paletteSteps - 1, Math.max(0, Math.round(e * (paletteSteps - 1)))) * 3;
           const i = (y * width + x) * 4;
-          d[i] = r;
-          d[i + 1] = g;
-          d[i + 2] = b;
+          d[i] = palette[color];
+          d[i + 1] = palette[color + 1];
+          d[i + 2] = palette[color + 2];
           d[i + 3] = 255;
         }
       }
@@ -121,7 +133,7 @@ export default function TopographicBackground({ onReady }: Props) {
         if (threshold < 0.35) style = contourColors.water;
         else if (threshold > 0.8) style = contourColors.mountain;
         ctx.strokeStyle = style;
-        ctx.lineWidth = level % 5 === 0 ? 1.2 : 0.5;
+        ctx.lineWidth = (level % 5 === 0 ? 1.2 : 0.5) * scale;
 
         for (let y = 0; y < rows - 1; y++) {
           for (let x = 0; x < cols - 1; x++) {
@@ -179,12 +191,16 @@ export default function TopographicBackground({ onReady }: Props) {
       }
     };
 
-    render();
-    onReady?.();
-    const onResize = () => render();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [onReady]);
+    const scheduleRender = () => {
+      if (frame === null) frame = requestAnimationFrame(render);
+    };
+    scheduleRender();
+    window.addEventListener('resize', scheduleRender);
+    return () => {
+      window.removeEventListener('resize', scheduleRender);
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
+  }, []);
 
-  return <canvas ref={canvasRef} className={styles.canvas} />;
+  return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />;
 }

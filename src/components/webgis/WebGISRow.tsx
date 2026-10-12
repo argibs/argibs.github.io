@@ -1,4 +1,3 @@
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import ExternalLinkIcon from '../common/ExternalLinkIcon';
 import type { WebGISProject } from '../../types';
 import styles from './WebGISRow.module.css';
@@ -8,10 +7,8 @@ interface Props {
 }
 
 export default function WebGISRow({ project }: Props) {
-  const [ref, visible] = useIntersectionObserver<HTMLDivElement>();
-
   return (
-    <div ref={ref} className={`${styles.row} ${visible ? styles.visible : ''}`}>
+    <div className={styles.row}>
       <div className={styles.header}>
         <h3 className={styles.title}>{project.title}</h3>
         <span className={styles.date}>{project.date}</span>

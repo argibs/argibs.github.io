@@ -1,27 +1,24 @@
 .row {
+    min-width: 0;
     padding: 1.25rem 1.5rem;
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(61, 139, 111, 0.12);
     border-radius: 10px;
     margin-bottom: 0.75rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.row.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
     margin-bottom: 0.4rem;
 }
 
 .title {
+    min-width: 0;
+    flex: 1 1 16rem;
     font-size: 1.15rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -44,6 +41,8 @@
 }
 
 .tag {
+    max-width: 100%;
+    overflow-wrap: anywhere;
     display: inline-block;
     background: rgba(61, 139, 111, 0.12);
     color: var(--primary-color);
@@ -89,7 +88,9 @@
     border-radius: 14px;
     letter-spacing: 0.3px;
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    white-space: nowrap;
+    min-height: 44px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 .inlineLink:hover {
@@ -99,6 +100,14 @@
 }
 
 @media (max-width: 768px) {
+    .row {
+        padding: 1rem;
+    }
+
+    .date {
+        margin-left: 0;
+    }
+
     .title {
         font-size: 1rem;
     }
@@ -113,5 +122,12 @@
         margin-left: 0;
         margin-top: 0.3rem;
         width: fit-content;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .row {
+        opacity: 1;
+        transform: none;
     }
 }
