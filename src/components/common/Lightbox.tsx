@@ -4,18 +4,19 @@ import styles from './Lightbox.module.css';
 interface Props {
   src: string | null;
   onClose: () => void;
+  alt?: string;
 }
 
-export default function Lightbox({ src, onClose }: Props) {
+export default function Lightbox({ src, onClose, alt = 'Expanded project image' }: Props) {
   return (
     <BaseModal
       open={!!src}
       onClose={onClose}
       variant="lightbox"
-      showCloseButton={false}
+      label={`Image preview: ${alt}`}
       dialogClassName={styles.fullBleed}
     >
-      {src && <img src={src} alt="" className={styles.image} />}
+      {src && <img src={src} alt={alt} className={styles.image} />}
     </BaseModal>
   );
 }

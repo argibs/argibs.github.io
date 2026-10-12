@@ -14,7 +14,7 @@
     color: var(--text-primary);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     font-size: 0.8rem;
     display: inline-flex;
     align-items: center;
@@ -97,14 +97,15 @@
     pointer-events: auto;
 }
 
-.dropdown.flip {
-    top: auto;
-    bottom: calc(100% + 6px);
-    transform-origin: bottom;
-}
-
 /* Items (from .filter-dropdown-item) */
 .item {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    border: 0;
+    background: white;
+    font-family: inherit;
+    text-align: left;
     padding: 0.65rem 1rem;
     padding-left: 2.5rem;
     font-size: 0.85rem;
@@ -138,7 +139,7 @@
 }
 
 .item.selected::before {
-    content: '✓';
+    content: '\2713';
     position: absolute;
     left: 1rem;
     font-weight: bold;

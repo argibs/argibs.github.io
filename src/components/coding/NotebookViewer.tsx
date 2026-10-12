@@ -1,136 +1,92 @@
-import { useEffect, useState, type ReactElement } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-python';
-import './prism-custom.css';
+import { useEffect, useRef, useState } from 'react';
 import { asset } from '../../utils/asset';
 import styles from './NotebookViewer.module.css';
 
-interface NotebookCell {
-  cell_type: 'markdown' | 'code' | 'raw';
-  source: string[];
-  outputs?: NotebookOutput[];
-}
-
-interface NotebookOutput {
-  output_type: string;
-  text?: string | string[];
-  data?: Record<string, string | string[]>;
-  traceback?: string[];
-}
-
-function toStr(val: string | string[]): string {
-  return Array.isArray(val) ? val.join('') : val;
-}
-
 interface Props {
   notebookPath: string;
-  onImageClick?: (src: string) => void;
+  title: string;
+  imageOpen?: boolean;
+  onImageClick?: (src: string, alt: string) => void;
 }
 
-function renderMarkdown(source: string): string {
-  let html = source;
-  html = html.replace(/^#{1,6}\s+(.+)$/gm, (match, text) => {
-    const level = match.trim().indexOf(' ');
-    return `<h${level}>${text}</h${level}>`;
-  });
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  html = html.replace(/\n/g, '<br/>');
-  return html;
-}
-
-function renderOutputs(outputs: NotebookOutput[], onImageClick?: (src: string) => void): ReactElement[] {
-  return outputs.map((out, i) => {
-    if (out.output_type === 'stream' && out.text) {
-      return <pre key={i} className={styles.outputText}>{toStr(out.text)}</pre>;
-    }
-    if ((out.output_type === 'execute_result' || out.output_type === 'display_data') && out.data) {
-      if (out.data['image/png']) {
-        const src = `data:image/png;base64,${toStr(out.data['image/png'])}`;
-        return (
-          <div key={i} className={styles.imageWrap}>
-            <img
-              className={styles.outputImage}
-              src={src}
-              alt="output"
-              onClick={() => onImageClick?.(src)}
-            />
-            <span className={styles.expandHint}>Click the image to expand</span>
-          </div>
-        );
-      }
-      if (out.data['text/plain']) {
-        return <pre key={i} className={styles.outputText}>{toStr(out.data['text/plain'])}</pre>;
-      }
-    }
-    if (out.output_type === 'error' && out.traceback) {
-      return <pre key={i} className={styles.outputError}>{out.traceback.join('\n').replace(/\x1b\[[0-9;]*m/g, '')}</pre>;
-    }
-    return null as unknown as ReactElement;
-  }).filter(Boolean);
-}
-
-export default function NotebookViewer({ notebookPath, onImageClick }: Props) {
-  const [cells, setCells] = useState<NotebookCell[]>([]);
-  const [loading, setLoading] = useState(true);
+function NotebookPreview({ notebookPath, title, imageOpen = false, onImageClick }: Props) {
+  const [attempt, setAttempt] = useState(0);
+  const [available, setAvailable] = useState(false);
+  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const expandedImage = useRef(false);
+  const previewUrl = asset(`notebook-previews/${notebookPath.replace(/\.ipynb$/i, '.html')}`);
 
   useEffect(() => {
-    fetch(asset(notebookPath))
-      .then((r) => r.json())
-      .then((nb) => {
-        const parsed: NotebookCell[] = nb.cells.map((c: { cell_type: string; source: string[]; outputs?: NotebookOutput[] }) => ({
-          cell_type: c.cell_type,
-          source: c.source,
-          outputs: c.outputs || [],
-        }));
-        setCells(parsed);
-        setLoading(false);
+    const controller = new AbortController();
+    // Check for missing files and the Pages/Vite SPA fallback before creating a frame.
+    // The preview itself is rendered by the browser, not parsed as notebook cells here.
+    fetch(previewUrl, { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Preview not found');
+        const html = await response.text();
+        if (!html.includes('name="portfolio-notebook-preview"')) throw new Error('Not a notebook preview');
+        if (!controller.signal.aborted) setAvailable(true);
       })
-      .catch(() => setLoading(false));
-  }, [notebookPath]);
+      .catch(() => { if (!controller.signal.aborted) setState('error'); });
+    return () => controller.abort();
+  }, [previewUrl, attempt]);
 
-  if (loading) return <div className={styles.viewer}><p>Loading notebook...</p></div>;
-  if (cells.length === 0) return <div className={styles.viewer}><p>Could not load notebook.</p></div>;
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      const frame = frameRef.current;
+      // A sandbox without allow-same-origin has an opaque origin, so origin alone
+      // cannot authenticate it. Accept only this frame's actual browsing context.
+      if (!frame?.contentWindow || event.source !== frame.contentWindow) return;
+      if (event.data?.type === 'portfolio-notebook-ready') setState('ready');
+      if (event.data?.type === 'portfolio-notebook-image' && !imageOpen) {
+        const { src, alt } = event.data;
+        if (typeof src !== 'string' || !/^data:image\/(?:png|jpeg);base64,(?:[a-z\d+/]{4})*(?:[a-z\d+/]{2}==|[a-z\d+/]{3}=)?$/i.test(src) || src.endsWith(',')) return;
+        onImageClick?.(src, typeof alt === 'string' && alt.trim() ? alt : `${title} \u2014 saved notebook output`);
+      }
+      if (event.data?.type === 'portfolio-notebook-escape') {
+        // Let Radix's topmost dialog handler process Escape, including nested dialogs.
+        frame.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [imageOpen, onImageClick, title]);
 
-  return (
-    <div className={styles.viewer}>
-      {cells.map((cell, i) => (
-        <div key={i} className={`${styles.cell} ${styles[cell.cell_type]}`}>
-          {cell.cell_type === 'markdown' ? (
-            <div
-              className={styles.markdownContent}
-              dangerouslySetInnerHTML={{ __html: renderMarkdown(cell.source.join('')) }}
-            />
-          ) : cell.cell_type === 'code' ? (
-            <>
-              <div className={styles.codeLabel}>Code</div>
-              <div className={styles.codeBlock}>
-                {cell.source.join('').split('\n').map((line, li) => (
-                  <div key={li} className={styles.codeLine}>
-                    <span className={styles.lineNum}>{li + 1}</span>
-                    <code
-                      className={styles.lineCode}
-                      dangerouslySetInnerHTML={{
-                        __html: Prism.highlight(line || ' ', Prism.languages.python, 'python'),
-                      }}
-                    />
-                  </div>
-                ))}
-              </div>
-              {cell.outputs && cell.outputs.length > 0 && (
-                <div className={styles.outputs}>
-                  <div className={styles.outputLabel}>Output</div>
-                  {renderOutputs(cell.outputs, onImageClick)}
-                </div>
-              )}
-            </>
-          ) : (
-            <pre className={styles.codeContent}>{cell.source.join('')}</pre>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+  useEffect(() => {
+    if (imageOpen) {
+      expandedImage.current = true;
+      return;
+    }
+    if (!expandedImage.current) return;
+    // Restore the opaque frame, then its own remembered control after Radix cleanup.
+    const timer = window.setTimeout(() => {
+      frameRef.current?.focus();
+      frameRef.current?.contentWindow?.postMessage({ type: 'portfolio-notebook-restore-image-focus' }, '*');
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [imageOpen]);
+
+  return <div className={styles.viewer}>
+    <a href={asset(notebookPath)} download className={styles.download}>Download original notebook (.ipynb)</a>
+    {state === 'loading' && <p role="status">Loading notebook preview&hellip;</p>}
+    {state === 'error' && <div role="alert">
+      <p>Could not load the notebook preview. You can still download the original notebook.</p>
+      <button type="button" onClick={() => {
+        setAvailable(false);
+        setState('loading');
+        setAttempt((current) => current + 1);
+      }}>Retry preview</button>
+    </div>}
+    {available && state !== 'error' && <iframe
+      key={attempt} ref={frameRef} src={previewUrl}
+      title={`${title} \u2014 saved notebook preview`}
+      sandbox="allow-scripts" loading="lazy" referrerPolicy="no-referrer"
+      className={styles.frame} onError={() => setState('error')}
+    />}
+  </div>;
+}
+
+export default function NotebookViewer(props: Props) {
+  return <NotebookPreview key={props.notebookPath} {...props} />;
 }

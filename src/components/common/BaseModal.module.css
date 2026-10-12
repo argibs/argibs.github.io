@@ -16,6 +16,16 @@
     animation: baseModalFadeIn 0.3s ease;
 }
 
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
 @keyframes baseModalFadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -41,33 +51,6 @@
         opacity: 1;
         transform: scale(1);
     }
-}
-
-@keyframes baseModalFadeOut {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-}
-
-@keyframes baseModalSlideDown {
-    from { opacity: 1; transform: translateY(0); }
-    to   { opacity: 0; transform: translateY(30px); }
-}
-
-@keyframes baseModalZoomOut {
-    from { opacity: 1; transform: scale(1); }
-    to   { opacity: 0; transform: scale(0.9); }
-}
-
-.overlay.closing {
-    animation: baseModalFadeOut 0.28s ease forwards;
-}
-
-.overlay.closing .dialog {
-    animation: baseModalSlideDown 0.28s ease forwards;
-}
-
-.overlay.lightbox.closing .dialog {
-    animation: baseModalZoomOut 0.26s ease forwards;
 }
 
 /* ---------- Shared dialog (inner container) ---------- */
@@ -100,7 +83,7 @@
     padding: 0;
     line-height: 0;
     border-radius: 50%;
-    transition: var(--transition, all 0.3s ease);
+    transition: background-color 0.3s ease, transform 0.3s ease;
     z-index: 2;
     width: 50px;
     height: 50px;
@@ -230,7 +213,7 @@
     border-radius: 6px;
     box-shadow: var(--shadow-lg);
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
     margin: 0 auto 1.5rem;
 }
@@ -302,7 +285,7 @@
     border-radius: 6px;
     box-shadow: var(--shadow-lg);
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
     margin: 0 auto 1.5rem;
 }
@@ -358,13 +341,13 @@
 }
 
 .lightbox .close {
-    top: -50px;
-    right: 0;
-    background: transparent;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.65);
     color: white;
     font-size: 3rem;
-    width: auto;
-    height: auto;
+    width: 50px;
+    height: 50px;
     border-radius: 0;
     line-height: 1;
 }
@@ -434,8 +417,8 @@
     .close {
         top: 0.5rem;
         right: 0.5rem;
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         font-size: 1.5rem;
     }
 
@@ -543,4 +526,12 @@
         padding: 0.3rem 0.7rem;
         margin-bottom: 0.5rem;
     }
+}
+
+/* Keep long notebook titles clear of the close control at every breakpoint. */
+.header,
+.project .header,
+.challenge .header {
+    padding-inline-end: 4.5rem;
+    overflow-wrap: anywhere;
 }

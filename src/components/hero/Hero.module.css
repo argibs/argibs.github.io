@@ -10,15 +10,13 @@
 }
 
 .hero {
-    height: 100vh;
-    overflow: hidden;
+    min-height: calc(100svh - 96px);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     background: transparent;
-    padding: 80px 16px 64px;
-    overflow: hidden;
+    padding: 2rem 1rem max(3rem, env(safe-area-inset-bottom));
 }
 
 .content {
@@ -26,6 +24,7 @@
     z-index: 1;
     max-width: 880px;
     width: 100%;
+    min-width: 0;
     animation: fadeInUp 1s ease;
 }
 
@@ -105,7 +104,7 @@
     padding: 0.32rem 0.64rem;
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
 }
 
@@ -136,7 +135,8 @@
     box-shadow: var(--shadow-sm);
     text-decoration: none;
     color: var(--text-primary);
-    transition: var(--transition);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    min-height: 44px;
     border: 2px solid transparent;
     font: inherit;
     cursor: pointer;
@@ -193,7 +193,7 @@
     border-radius: 50%;
     object-fit: cover;
     box-shadow: var(--shadow-lg);
-    transition: var(--transition-slow);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
 
 .portrait img:hover {
@@ -203,6 +203,8 @@
 
 .bioText {
     flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .bioLead {
@@ -236,12 +238,13 @@
 /* Mobile */
 @media (max-width: 768px) {
     .hero {
-        min-height: auto;
-        padding: 64px 12px 48px;
+        min-height: calc(100svh - var(--compact-header-height));
+        padding: 1.5rem max(1rem, env(safe-area-inset-right)) max(3rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
     }
 
     .header {
         margin-bottom: 2rem;
+        padding: 1.5rem 1rem;
     }
 
     .bioSection {
@@ -299,5 +302,11 @@
 
     .connectButtonText {
         font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content {
+        animation: none;
     }
 }

@@ -1,22 +1,47 @@
 .landingMain {
-  padding-top: 48px;
-  height: 100vh;
-  overflow: hidden;
+  flex: 1;
+  min-width: 0;
 }
 
 .appShell {
   display: flex;
-  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.landingShell {
+  display: flex;
+  min-height: calc(100svh - 96px);
 }
 
 .contentMain {
-  margin-left: 280px;
+  margin-left: var(--sidebar-width);
   flex: 1;
-  height: 100vh;
-  overflow: hidden;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
+.skipLink {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  background: #f5f0e8;
+  color: var(--text-primary);
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.skipLink:focus {
+  transform: none;
+}
+
+@media (max-width: 1023px) {
+  .appShell,
+  .landingShell {
+    min-height: calc(100svh - var(--compact-header-height));
+  }
+
   .contentMain {
     margin-left: 0;
   }

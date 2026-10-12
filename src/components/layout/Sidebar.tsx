@@ -1,21 +1,10 @@
-import { Link, useLocation } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import ExternalLinkIcon from '../common/ExternalLinkIcon';
 import { asset } from '../../utils/asset';
+import { navItems } from './navigation';
 import styles from './Sidebar.module.css';
 
-const navItems = [
-  { to: '/highlights', label: 'Highlights' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/challenge', label: '30 Day Map Challenge' },
-  { to: '/coding', label: 'Coding Projects' },
-  { to: '/webgis', label: 'Web GIS Experience' },
-];
-
 export default function Sidebar() {
-  const location = useLocation();
-
-  const isActive = (path: string) => location.pathname.startsWith(path);
-
   return (
     <aside className={styles.sidebar}>
       <Link to="/" className={styles.identity}>
@@ -28,15 +17,15 @@ export default function Sidebar() {
         <p className={styles.title}>GIS Specialist</p>
       </Link>
 
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Primary navigation">
         {navItems.map((item) => (
-          <Link
+          <NavLink
             key={item.to}
             to={item.to}
-            className={`${styles.navLink} ${isActive(item.to) ? styles.active : ''}`}
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
           >
             {item.label}
-          </Link>
+          </NavLink>
         ))}
         <a
           href={asset('assets/resume/Resume11-3-25.pdf')}

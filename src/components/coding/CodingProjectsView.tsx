@@ -1,59 +1,52 @@
-import { useRef, useState } from 'react';
+import { useId, useState } from 'react';
 import { useFetchJSON } from '../../hooks/useFetchJSON';
 import { asset } from '../../utils/asset';
 import type { CodingProject } from '../../types';
 import CodingProjectRow from './CodingProjectRow';
 import BaseModal from '../common/BaseModal';
-import CustomScrollbar from '../common/CustomScrollbar';
 import Lightbox from '../common/Lightbox';
 import NotebookViewer from './NotebookViewer';
 import SectionPanel from '../common/SectionPanel';
+import ContentList from '../common/ContentList';
 import styles from './CodingProjectsView.module.css';
 
 export default function CodingProjectsView() {
   const { data, loading, error } = useFetchJSON<CodingProject[]>(asset('coding_projects.json'));
   const [openProject, setOpenProject] = useState<CodingProject | null>(null);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [image, setImage] = useState<{ src: string; alt: string } | null>(null);
+  const titleId = useId();
 
   return (
-    <SectionPanel id="coding">
+    <SectionPanel id="coding" loading={loading}>
       <header className={styles.header}>
         <h1 className={styles.title}>Coding Projects</h1>
       </header>
       {loading && <p>Loading...</p>}
       {error && <p>Failed to load projects.</p>}
       {!loading && !error && data && (
-        <div className={styles.list}>
-          {data.map((project) => (
-            <CodingProjectRow
-              key={project.title}
-              project={project}
-              onOpen={() => setOpenProject(project)}
-            />
-          ))}
-        </div>
+        <ContentList count={data.length} label={data.length === 1 ? 'project' : 'projects'}>
+          <div className={styles.list}>
+            {data.map((project) => (
+              <CodingProjectRow
+                key={project.title}
+                project={project}
+                onOpen={() => setOpenProject(project)}
+              />
+            ))}
+          </div>
+        </ContentList>
       )}
       <BaseModal
         open={!!openProject}
         onClose={() => setOpenProject(null)}
         variant="project"
         dialogClassName={styles.notebookDialog}
-        header={openProject ? <h2>{openProject.title}</h2> : undefined}
+        labelledBy={titleId}
+        header={openProject ? <h2 id={titleId}>{openProject.title}</h2> : undefined}
       >
-        <div className={styles.notebookScrollWrap}>
-          <div ref={scrollRef} className={styles.notebookScroll}>
-            {openProject && (
-              <NotebookViewer
-                notebookPath={openProject.notebook}
-                onImageClick={setLightboxSrc}
-              />
-            )}
-          </div>
-          <CustomScrollbar scrollRef={scrollRef} />
-        </div>
+        {openProject && <NotebookViewer notebookPath={openProject.notebook} title={openProject.title} imageOpen={!!image} onImageClick={(src, alt) => setImage({ src, alt })} />}
       </BaseModal>
-      <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
+      <Lightbox src={image?.src ?? null} alt={image?.alt} onClose={() => setImage(null)} />
     </SectionPanel>
   );
 }

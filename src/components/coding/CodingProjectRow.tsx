@@ -1,4 +1,3 @@
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import type { CodingProject } from '../../types';
 import styles from './CodingProjectRow.module.css';
 
@@ -8,12 +7,10 @@ interface Props {
 }
 
 export default function CodingProjectRow({ project, onOpen }: Props) {
-  const [ref, visible] = useIntersectionObserver<HTMLDivElement>();
-
   return (
-    <div ref={ref} className={`${styles.row} ${visible ? styles.visible : ''}`} onClick={onOpen}>
+    <button type="button" className={styles.row} onClick={onOpen}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{project.title}</h3>
+        <h2 className={styles.title}>{project.title}</h2>
         <span className={styles.date}>{project.date}</span>
       </div>
       <div className={styles.tags}>
@@ -23,6 +20,6 @@ export default function CodingProjectRow({ project, onOpen }: Props) {
       </div>
       <p className={styles.description}>{project.description}</p>
       <span className={styles.arrow}>&#8250;</span>
-    </div>
+    </button>
   );
 }

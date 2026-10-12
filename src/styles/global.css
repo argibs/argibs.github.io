@@ -7,7 +7,6 @@
 
 html {
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
 }
 
 body {
@@ -15,8 +14,6 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     background-color: #f5f3ed;
-    overflow-x: hidden;
-    -ms-overflow-style: none; /* IE/Edge */
     position: relative;
 }
 
@@ -25,6 +22,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
+    overflow-wrap: anywhere;
 }
 
 h1 { font-size: clamp(2rem, 4.8vw, 3.2rem); }
@@ -35,12 +33,31 @@ h4 { font-size: clamp(0.88rem, 2vw, 1.2rem); }
 p {
     margin-bottom: 1rem;
     color: var(--text-secondary);
+    overflow-wrap: anywhere;
 }
 
-/* Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+/* Keyboard focus remains visible on links, controls, and the skip-link target. */
+:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
 }
 
 /* Print Styles */

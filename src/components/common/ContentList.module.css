@@ -1,0 +1,25 @@
+.summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0.5rem 1rem;
+    min-height: 1.5em;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+}
+
+.summary[role='status'] {
+    max-width: none;
+}
+
+.cue {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .summary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

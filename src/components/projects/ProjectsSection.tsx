@@ -8,6 +8,7 @@ import ProjectGrid from './ProjectGrid';
 import ProjectModal from './ProjectModal';
 import Lightbox from '../common/Lightbox';
 import SectionPanel from '../common/SectionPanel';
+import ContentList from '../common/ContentList';
 
 export default function ProjectsSection() {
   const { data, loading, error } = useFetchJSON<Project[]>(asset('projects.json'));
@@ -22,12 +23,12 @@ export default function ProjectsSection() {
     [data, category, subcategory],
   );
 
-  if (loading) return <SectionPanel id="projects"><p>Loading projects...</p></SectionPanel>;
+  if (loading) return <SectionPanel id="projects" loading><p>Loading projects...</p></SectionPanel>;
   if (error) return <SectionPanel id="projects"><p>Failed to load projects.</p></SectionPanel>;
 
   return (
     <SectionPanel id="projects">
-      <h2 style={{ textAlign: 'center', margin: '0 0 1.2rem', fontSize: '2rem', color: 'var(--text-primary)' }}>Projects</h2>
+      <h1 style={{ textAlign: 'center', margin: '0 0 1.2rem', fontSize: '2rem', color: 'var(--text-primary)' }}>Projects</h1>
       <ProjectFilters
         filters={filters}
         activeCategory={category}
@@ -37,13 +38,15 @@ export default function ProjectsSection() {
           setSubcategory(sub);
         }}
       />
-      <ProjectGrid projects={visible} onOpen={setOpenProject} />
+      <ContentList count={visible.length} label={visible.length === 1 ? 'project' : 'projects'}>
+        <ProjectGrid projects={visible} onOpen={setOpenProject} />
+      </ContentList>
       <ProjectModal
         project={openProject}
         onClose={() => setOpenProject(null)}
         onImageClick={setLightboxSrc}
       />
-      <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
+      <Lightbox src={lightboxSrc} alt={openProject?.title} onClose={() => setLightboxSrc(null)} />
     </SectionPanel>
   );
 }
