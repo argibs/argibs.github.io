@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .vite/*
+public/notebook-previews/
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,24 @@
+:root { color-scheme: light; font: 16px/1.6 system-ui, sans-serif; color: #303b3b; background: #fff; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: clamp(12px, 3vw, 32px); }
+main, .nb-notebook, .nb-worksheet, .nb-cell { min-width: 0; max-width: 100%; }
+.nb-cell { margin-bottom: 24px; overflow-wrap: anywhere; }
+h1, h2, h3 { line-height: 1.25; }
+pre { padding: 16px; border: 1px solid #d5dedb; background: #f4f7f6; border-radius: 6px; max-width: 100%; overflow-x: auto; white-space: pre; font-size: 13px; line-height: 1.6; }
+code { font-family: ui-monospace, monospace; }
+pre code { white-space: pre; overflow-wrap: normal; }
+img { max-width: 100%; height: auto; object-fit: contain; }
+.nb-image-control { display: block; max-width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; text-align: left; }
+.nb-image-control img { display: block; }
+.nb-image-control span { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+.nb-image-control:focus-visible { outline: 3px solid #345c86; outline-offset: 3px; }
+table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 14px; }
+td, th { border: 1px solid #d5dedb; padding: 6px 10px; }
+blockquote { margin-inline: 0; padding-left: 16px; border-left: 3px solid #708b81; }
+.nb-output { margin-top: 12px; }
+.nb-pyerr { color: #a13434; }
+.token.comment { color: #62756a; }
+.token.string { color: #805321; }
+.token.keyword, .token.boolean { color: #345c86; }
+.token.number, .token.function { color: #70538a; }
+.token.operator, .token.punctuation { color: #465455; }
