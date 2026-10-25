@@ -1,5 +1,13 @@
 [
   {
+    "category": "personal",
+    "subcategory": "all",
+    "title": "Life List",
+    "description": "CMPASS Conference 2026 Map Gallery Winner for 'Best Cartographic Storytelling'. This map is a representation of my birding 'life list', meaning all the birds I've seen.",
+    "image": "assets/images/model_builder.png",
+    "fullDescription": "I created this for the 2026 CMPASS Conference Map Gallery and was lucky enough to recieve the award for Best Storytelling. The data are aggregated by county and represented with dot density symbology. I hand-drew the bird symbols used in the map, and the goal was to make it look like flocks of birds."
+  },
+  {
     "category": "coursework",
     "subcategory": "EAS 652",
     "title": "Bench Suitability Model Builder Workflow",
